@@ -78,7 +78,7 @@ body>header {
     border-bottom: var(--border-width)solid var(--border);
     text-align: center;
     grid-column: 1/-1;
-    padding: 0 .5rem 2rem
+    padding: 0 .5rem 0.5rem
 }
 
 body>header>:only-child {
@@ -234,9 +234,14 @@ input:enabled:focus-visible:where([type=submit], [type=reset], [type=button]) {
 }
 
 header nav {
-    padding: 1rem 0 0;
+    padding: 0;
     font-size: 1rem;
-    line-height: 2
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 header nav ul,
