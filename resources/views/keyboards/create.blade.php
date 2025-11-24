@@ -41,7 +41,7 @@
             ];
             @endphp
             @foreach($qwertyLayout as $rowIndex => $row)
-            <div style="display: flex; gap: 4px; margin-bottom: 4px; padding-left: {{ $rowIndex * 20 }}px;">
+            <div style="display: flex; gap: 4px; margin-bottom: 4px; padding-left: {{ $rowIndex * 20 }}px; padding-right: {{ (3-$rowIndex) * 20 }}px;">
                 @foreach($row as $colIndex => $defaultKey)
                 <select name="layout[{{ $rowIndex }}][{{ $colIndex }}]" style="flex: 1; max-width: 50px; font-size: 12px; {{ $colIndex == 5 ? 'margin-left: 20px;' : '' }}">
                     @foreach(array_merge(range('A', 'Z'), ['.', ',', '/', ';', '\'']) as $letter)
