@@ -37,6 +37,24 @@ class KeyboardController extends Controller
             'layout.*.*' => 'required|string',
         ]);
 
+        // Check for duplicate characters in the layout!
+        $allKeys = [];
+        foreach ($validated['layout'] as $row) {
+            foreach ($row as $key) {
+                $allKeys[] = $key;
+            }
+        }
+
+        $duplicates = array_filter(array_count_values($allKeys), function ($count) {
+            return $count > 1;
+        });
+
+        if (!empty($duplicates)) {
+            return back()->withInput()->withErrors([
+                'layout' => 'Each character can only be used once in the layout. Duplicate characters: ' . implode(', ', array_keys($duplicates))
+            ]);
+        }
+
         $keyboard = Keyboard::create($validated);
 
         return redirect()->route('keyboards.index')

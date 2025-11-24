@@ -33,6 +33,11 @@
 
         <div>
             <label>Keyboard Layout</label>
+            @if ($errors->has('layout'))
+                <div style="color: red; margin-bottom: 10px;">
+                    {{ $errors->first('layout') }}
+                </div>
+            @endif
             @php
             $qwertyLayout = [
                 ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
