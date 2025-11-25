@@ -2,8 +2,6 @@
 
 @section('content')
 
-<h1>Keyboards layouts</h1>
-
 @foreach($keyboards as $keyboard)
 <div>
     <h2>{{ $keyboard->name }}</h2>

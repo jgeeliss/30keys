@@ -2,8 +2,6 @@
 
 @section('content')
 <div>
-    <h1>Add New Keyboard</h1>
-
     <form action="{{ route('keyboards.store') }}" method="POST">
         @csrf
 
