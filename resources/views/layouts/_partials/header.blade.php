@@ -1,5 +1,7 @@
 <header>
     <nav>
+        <div style="position: fixed; top: 8px; left: 21px; font-family: shlop; font-size: 3rem; color: #ffb300;">30keys</div>
+
         @if (session('status'))
             <div style="position: fixed; top: 0; width: 100%;">
                 {{ session('status') }}
