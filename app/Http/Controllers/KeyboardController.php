@@ -22,6 +22,10 @@ class KeyboardController extends Controller
      */
     public function create()
     {
+        // check if user is authenticated
+        if (!auth()->check()) {
+            return back()->with('status', 'You must be logged in to create a keyboard layout.');
+        }
         return view('keyboards.create');
     }
 
