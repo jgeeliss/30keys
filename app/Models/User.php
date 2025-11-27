@@ -45,4 +45,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
+
+    public function keyboards(): BelongsToMany
+    {
+        return $this->belongsToMany(Keyboard::class);
+    }
+
 }

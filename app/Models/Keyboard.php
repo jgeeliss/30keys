@@ -13,9 +13,15 @@ class Keyboard extends Model
         'name',
         'description',
         'layout',
+        'user_id',
     ];
 
     protected $casts = [
         'layout' => 'array',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

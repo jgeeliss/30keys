@@ -59,6 +59,7 @@ class KeyboardController extends Controller
             ]);
         }
 
+        $validated['user_id'] = auth()->id();
         $keyboard = Keyboard::create($validated);
 
         return redirect()->route('keyboards.index')
