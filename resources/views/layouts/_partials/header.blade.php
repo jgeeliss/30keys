@@ -8,7 +8,7 @@
         @endif
         <ul>
             <li>
-                <div><span style="font-family: LinBiolinum_Kah, serif;">30</span><span style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">keys</span></div>
+                <div><span style="font-family: LinBiolinum_Kah, serif; font-size: 1.2em; letter-spacing: -0.1em;">30</span><span style="margin-left: 0.1em; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">keys</span></div>
             </li>
             <!-- a spacer here -->
             <li style="flex-grow: 1;"></li>
