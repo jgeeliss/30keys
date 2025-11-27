@@ -1,6 +1,5 @@
 <header>
     <nav>
-        <div style="position: fixed; top: 8px; left: 21px; font-family: shlop; font-size: 3rem; color: #ffb300;">30keys</div>
 
         @if (session('status'))
             <div style="position: fixed; top: 0; width: 100%;">
@@ -8,9 +7,17 @@
             </div>
         @endif
         <ul>
+            <li>
+                <div><span style="font-family: LinBiolinum_Kah, serif;">30</span><span style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">keys</span></div>
+            </li>
+            <!-- a spacer here -->
+            <li style="flex-grow: 1;"></li>
             <li><a href="{{ route('home') }}">Home</a></li>
             <li><a href="{{ route('keyboards.index') }}">Keyboard Layouts</a></li>
             <li><a href="{{ route('keyboards.create') }}">Add Keyboard</a></li>
+            <!-- a spacer here -->
+            <li style="flex-grow: 1;"></li>
+
             <!-- Authentication links -->
 
             @auth

@@ -1,6 +1,6 @@
 @font-face {
-  font-family: shlop;
-  src: url("shlop rg.otf");
+  font-family: LinBiolinum_Kah;
+  src: url("LinBiolinum_Kah.ttf");
 }
 
 /* some classless css, source: https://unpkg.com/simpledotcss@2.3.7/simple.min.css */
@@ -253,7 +253,7 @@ header nav ul,
 header nav ol {
     flex-flow: wrap;
     place-content: space-around center;
-    align-items: center;
+    align-items: flex-start;
     margin: 0;
     padding: 0;
     list-style-type: none;
@@ -263,6 +263,15 @@ header nav ol {
 header nav ul li,
 header nav ol li {
     display: inline-block
+}
+
+header nav ul div {
+    font-size: 2rem;
+    line-height: 1rem;
+}
+
+header nav div {
+    color: var(--accent);
 }
 
 header nav a,
