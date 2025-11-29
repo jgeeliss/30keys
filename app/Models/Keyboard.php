@@ -39,4 +39,9 @@ class Keyboard extends Model
     {
         return $this->ratings()->count();
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

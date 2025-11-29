@@ -130,4 +130,18 @@ class KeyboardController extends Controller
 
         return back()->with('status', 'Rating submitted successfully!');
     }
+
+    public function comment(Request $request, Keyboard $keyboard)
+    {
+        $validated = $request->validate([
+            'comment' => 'required|string|max:1000',
+        ]);
+
+        $keyboard->comments()->create([
+            'user_id' => auth()->id(),
+            'comment' => $validated['comment'],
+        ]);
+
+        return back()->with('status', 'Comment posted successfully!');
+    }
 }
