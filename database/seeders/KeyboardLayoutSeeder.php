@@ -25,7 +25,7 @@ class KeyboardLayoutSeeder extends Seeder
             'layout' => [
                 ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
                 ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ';'],
-                ['Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '/']
+                ['Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '/'],
             ],
             'user_id' => $qwertyUser->id,
         ]);
@@ -44,7 +44,7 @@ class KeyboardLayoutSeeder extends Seeder
             'layout' => [
                 ['\'', ',', '.', 'P', 'Y', 'F', 'G', 'C', 'R', 'L'],
                 ['A', 'O', 'E', 'U', 'I', 'D', 'H', 'T', 'N', 'S'],
-                [';', 'Q', 'J', 'K', 'X', 'B', 'M', 'W', 'V', 'Z']
+                [';', 'Q', 'J', 'K', 'X', 'B', 'M', 'W', 'V', 'Z'],
             ],
             'user_id' => $dvorakUser->id,
         ]);
@@ -63,7 +63,7 @@ class KeyboardLayoutSeeder extends Seeder
             'layout' => [
                 ['Q', 'W', 'F', 'P', 'G', 'J', 'L', 'U', 'Y', ';'],
                 ['A', 'R', 'S', 'T', 'D', 'H', 'N', 'E', 'I', 'O'],
-                ['Z', 'X', 'C', 'V', 'B', 'K', 'M', ',', '.', '/']
+                ['Z', 'X', 'C', 'V', 'B', 'K', 'M', ',', '.', '/'],
             ],
             'user_id' => $colemakUser->id,
         ]);
@@ -82,7 +82,7 @@ class KeyboardLayoutSeeder extends Seeder
             'layout' => [
                 ['Q', 'D', 'R', 'W', 'B', 'J', 'F', 'U', 'P', ';'],
                 ['A', 'S', 'H', 'T', 'G', 'Y', 'N', 'E', 'O', 'I'],
-                ['Z', 'X', 'M', 'C', 'V', 'K', 'L', ',', '.', '/']
+                ['Z', 'X', 'M', 'C', 'V', 'K', 'L', ',', '.', '/'],
             ],
             'user_id' => $workmanUser->id,
         ]);
@@ -101,7 +101,7 @@ class KeyboardLayoutSeeder extends Seeder
             'layout' => [
                 ['Q', 'W', 'D', 'F', 'K', 'J', 'U', 'R', 'L', ';'],
                 ['A', 'S', 'E', 'T', 'G', 'Y', 'N', 'I', 'O', 'H'],
-                ['Z', 'X', 'C', 'V', 'B', 'P', 'M', ',', '.', '/']
+                ['Z', 'X', 'C', 'V', 'B', 'P', 'M', ',', '.', '/'],
             ],
             'user_id' => $normanUser->id,
         ]);

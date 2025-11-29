@@ -23,9 +23,10 @@ class KeyboardController extends Controller
     public function create()
     {
         // check if user is authenticated
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             return back()->with('status', 'You must be logged in to create a keyboard layout.');
         }
+
         return view('keyboards.create');
     }
 
@@ -53,9 +54,9 @@ class KeyboardController extends Controller
             return $count > 1;
         });
 
-        if (!empty($duplicates)) {
+        if (! empty($duplicates)) {
             return back()->withInput()->withErrors([
-                'layout' => 'Each character can only be used once in the layout. Duplicate characters: ' . implode(', ', array_keys($duplicates))
+                'layout' => 'Each character can only be used once in the layout. Duplicate characters: '.implode(', ', array_keys($duplicates)),
             ]);
         }
 
