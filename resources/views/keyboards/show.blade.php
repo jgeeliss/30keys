@@ -14,6 +14,7 @@
 @endif
 @include('keyboards._layout', ['keyboard' => $keyboard])
 
+@if(auth()->check())
 <div>
     <h3>Rate this layout</h3>
     @if($userRating)
@@ -32,5 +33,6 @@
         </div>
     </form>
 </div>
+@endif
 
 @endsection
