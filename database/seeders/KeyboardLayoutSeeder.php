@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Keyboard;
+use App\Models\Rating;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -30,6 +31,8 @@ class KeyboardLayoutSeeder extends Seeder
             'user_id' => $dutchmanUser->id,
         ]);
 
+        $dutchmanKeyboard = Keyboard::where('name', 'Dutchman')->first();
+
         // QWERTY Layout
         $qwertyUser = User::create([
             'user_alias' => 'christopher_sholes',
@@ -49,6 +52,8 @@ class KeyboardLayoutSeeder extends Seeder
             'user_id' => $qwertyUser->id,
         ]);
 
+        $qwertyKeyboard = Keyboard::where('name', 'QWERTY')->first();
+
         // Dvorak Simplified Keyboard
         $dvorakUser = User::create([
             'user_alias' => 'august_dvorak',
@@ -58,7 +63,7 @@ class KeyboardLayoutSeeder extends Seeder
         ]);
 
         Keyboard::create([
-            'name' => 'Dvorak Simplified Keyboard',
+            'name' => 'Dvorak',
             'description' => 'Designed in 1936 to increase typing efficiency by placing the most used letters under the strongest fingers. Still relatively niche but one of the most widely adopted "alternative" layouts.',
             'layout' => [
                 ['\'', ',', '.', 'P', 'Y', 'F', 'G', 'C', 'R', 'L'],
@@ -67,6 +72,8 @@ class KeyboardLayoutSeeder extends Seeder
             ],
             'user_id' => $dvorakUser->id,
         ]);
+
+        $dvorakKeyboard = Keyboard::where('name', 'Dvorak')->first();
 
         // Colemak
         $colemakUser = User::create([
@@ -87,6 +94,8 @@ class KeyboardLayoutSeeder extends Seeder
             'user_id' => $colemakUser->id,
         ]);
 
+        $colemakKeyboard = Keyboard::where('name', 'Colemak')->first();
+
         // Workman
         $workmanUser = User::create([
             'user_alias' => 'oj_bucao',
@@ -106,6 +115,8 @@ class KeyboardLayoutSeeder extends Seeder
             'user_id' => $workmanUser->id,
         ]);
 
+        $workmanKeyboard = Keyboard::where('name', 'Workman')->first();
+
         // Norman
         $normanUser = User::create([
             'user_alias' => 'david_norman',
@@ -124,5 +135,74 @@ class KeyboardLayoutSeeder extends Seeder
             ],
             'user_id' => $normanUser->id,
         ]);
+
+        $normanKeyboard = Keyboard::where('name', 'Norman')->first();
+
+        // Create some random raters
+        $raters = [];
+        for ($i = 1; $i <= 10; $i++) {
+            $raters[] = User::create([
+                'user_alias' => 'user_' . $i,
+                'email' => 'user' . $i . '@example.com',
+                'password' => Hash::make('password'),
+                'email_verified_at' => now(),
+            ]);
+        }
+
+        // Add ratings to keyboards
+
+        // Dutchman - obviously well-liked by all!
+        foreach (array_rand($raters, 7) as $randomRater) {
+            Rating::create([
+                'keyboard_id' => $dutchmanKeyboard->id,
+                'user_id' => $raters[$randomRater]->id,
+                'rating' => rand(4, 5),
+            ]);
+        }
+
+        // QWERTY - average ratings
+        foreach (array_rand($raters, 7) as $randomRater) {
+            Rating::create([
+                'keyboard_id' => $qwertyKeyboard->id,
+                'user_id' => $raters[$randomRater]->id,
+                'rating' => rand(2, 4),
+            ]);
+        }
+
+        // Dvorak - some good, some bad
+        foreach (array_rand($raters, 6) as $randomRater) {
+            Rating::create([
+                'keyboard_id' => $dvorakKeyboard->id,
+                'user_id' => $raters[$randomRater]->id,
+                'rating' => rand(1, 2) == 1 ? rand(1, 2) : rand(4, 5),
+            ]);
+        }
+
+        // Colemak - generally well-liked
+        foreach (array_rand($raters, 8) as $randomRater) {
+            Rating::create([
+                'keyboard_id' => $colemakKeyboard->id,
+                'user_id' => $raters[$randomRater]->id,
+                'rating' => rand(3, 5),
+            ]);
+        }
+
+        // Workman - moderate ratings
+        foreach (array_rand($raters, 5) as $randomRater) {
+            Rating::create([
+                'keyboard_id' => $workmanKeyboard->id,
+                'user_id' => $raters[$randomRater]->id,
+                'rating' => rand(3, 4),
+            ]);
+        }
+
+        // Norman - fewer ratings, mixed
+        foreach (array_rand($raters, 4) as $randomRater) {
+            Rating::create([
+                'keyboard_id' => $normanKeyboard->id,
+                'user_id' => $raters[$randomRater]->id,
+                'rating' => rand(2, 4),
+            ]);
+        }
     }
 }
