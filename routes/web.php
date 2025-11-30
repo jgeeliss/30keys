@@ -5,6 +5,7 @@ use App\Http\Controllers\KeyboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
+Route::view('/about', 'about')->name('about');
 
 Route::get('/keyboards', [KeyboardController::class, 'index'])->name('keyboards.index');
 Route::get('/keyboard/create', [KeyboardController::class, 'create'])->name('keyboards.create');
