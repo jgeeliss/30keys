@@ -20,7 +20,7 @@ class KeyboardLayoutSeeder extends Seeder
             'email_verified_at' => now(),
         ]);
 
-        Keyboard::create([
+        $dutchmanKeyboard = Keyboard::create([
             'name' => 'Dutchman',
             'description' => 'Especially designed for Dutch and English letter frequency optimization.',
             'layout' => [
@@ -29,9 +29,9 @@ class KeyboardLayoutSeeder extends Seeder
                 ['v', 'Z', 'J', 'G', 'C', 'B', 'K', 'Y', '.', ','],
             ],
             'user_id' => $dutchmanUser->id,
+            'created_at' => now()->subDays(rand(1, 120)),
+            'updated_at' => now()->subDays(rand(1, 120)),
         ]);
-
-        $dutchmanKeyboard = Keyboard::where('name', 'Dutchman')->first();
 
         // QWERTY Layout
         $qwertyUser = User::create([
@@ -41,7 +41,7 @@ class KeyboardLayoutSeeder extends Seeder
             'email_verified_at' => now(),
         ]);
 
-        Keyboard::create([
+        $qwertyKeyboard = Keyboard::create([
             'name' => 'QWERTY',
             'description' => 'Developed for early typewriters (Remington No.1) in the 1870s. By far the most widely used layout globally across English-speaking countries.',
             'layout' => [
@@ -50,9 +50,9 @@ class KeyboardLayoutSeeder extends Seeder
                 ['Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '/'],
             ],
             'user_id' => $qwertyUser->id,
+            'created_at' => now()->subDays(rand(1, 120)),
+            'updated_at' => now()->subDays(rand(1, 120)),
         ]);
-
-        $qwertyKeyboard = Keyboard::where('name', 'QWERTY')->first();
 
         // Dvorak Simplified Keyboard
         $dvorakUser = User::create([
@@ -62,7 +62,7 @@ class KeyboardLayoutSeeder extends Seeder
             'email_verified_at' => now(),
         ]);
 
-        Keyboard::create([
+        $dvorakKeyboard = Keyboard::create([
             'name' => 'Dvorak',
             'description' => 'Designed in 1936 to increase typing efficiency by placing the most used letters under the strongest fingers. Still relatively niche but one of the most widely adopted "alternative" layouts.',
             'layout' => [
@@ -71,9 +71,9 @@ class KeyboardLayoutSeeder extends Seeder
                 [';', 'Q', 'J', 'K', 'X', 'B', 'M', 'W', 'V', 'Z'],
             ],
             'user_id' => $dvorakUser->id,
+            'created_at' => now()->subDays(rand(1, 120)),
+            'updated_at' => now()->subDays(rand(1, 120)),
         ]);
-
-        $dvorakKeyboard = Keyboard::where('name', 'Dvorak')->first();
 
         // Colemak
         $colemakUser = User::create([
@@ -83,7 +83,7 @@ class KeyboardLayoutSeeder extends Seeder
             'email_verified_at' => now(),
         ]);
 
-        Keyboard::create([
+        $colemakKeyboard = Keyboard::create([
             'name' => 'Colemak',
             'description' => 'Created in 2006. Popular among programmers and efficiency-focused typists. Designed to minimize finger movement while keeping many QWERTY positions intact for ease of transition.',
             'layout' => [
@@ -92,9 +92,9 @@ class KeyboardLayoutSeeder extends Seeder
                 ['Z', 'X', 'C', 'V', 'B', 'K', 'M', ',', '.', '/'],
             ],
             'user_id' => $colemakUser->id,
+            'created_at' => now()->subDays(rand(1, 120)),
+            'updated_at' => now()->subDays(rand(1, 120)),
         ]);
-
-        $colemakKeyboard = Keyboard::where('name', 'Colemak')->first();
 
         // Workman
         $workmanUser = User::create([
@@ -104,7 +104,7 @@ class KeyboardLayoutSeeder extends Seeder
             'email_verified_at' => now(),
         ]);
 
-        Keyboard::create([
+        $workmanKeyboard = Keyboard::create([
             'name' => 'Workman',
             'description' => 'Created in 2010-2011 as an improvement over QWERTY and Colemak, focusing on reducing lateral finger movement. Optimized for English typing but places strong emphasis on hand-alternation and minimizing awkward stretches.',
             'layout' => [
@@ -113,9 +113,9 @@ class KeyboardLayoutSeeder extends Seeder
                 ['Z', 'X', 'M', 'C', 'V', 'K', 'L', ',', '.', '/'],
             ],
             'user_id' => $workmanUser->id,
+            'created_at' => now()->subDays(rand(1, 120)),
+            'updated_at' => now()->subDays(rand(1, 120)),
         ]);
-
-        $workmanKeyboard = Keyboard::where('name', 'Workman')->first();
 
         // Norman
         $normanUser = User::create([
@@ -125,7 +125,7 @@ class KeyboardLayoutSeeder extends Seeder
             'email_verified_at' => now(),
         ]);
 
-        Keyboard::create([
+        $normanKeyboard = Keyboard::create([
             'name' => 'Norman',
             'description' => 'Created in 2010 to be a "middle ground" between QWERTY familiarity and efficiency. Keeps many common shortcuts (like Ctrl-C/V/Z positions) unchanged, making it easier to transition from QWERTY.',
             'layout' => [
@@ -134,9 +134,9 @@ class KeyboardLayoutSeeder extends Seeder
                 ['Z', 'X', 'C', 'V', 'B', 'P', 'M', ',', '.', '/'],
             ],
             'user_id' => $normanUser->id,
+            'created_at' => now()->subDays(rand(1, 120)),
+            'updated_at' => now()->subDays(rand(1, 120)),
         ]);
-
-        $normanKeyboard = Keyboard::where('name', 'Norman')->first();
 
         // Create some random raters
         $raters = [];

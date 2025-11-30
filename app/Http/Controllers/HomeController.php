@@ -17,6 +17,12 @@ class HomeController extends Controller
             ->sortByDesc(fn($keyboard) => $keyboard->averageRating())
             ->take(3);
 
-        return view('home', compact('topKeyboards'));
+        // Get latest 3 uploaded keyboards
+        $latestKeyboards = Keyboard::with(['ratings', 'user'])
+            ->latest()
+            ->take(3)
+            ->get();
+
+        return view('home', compact('topKeyboards', 'latestKeyboards'));
     }
 }

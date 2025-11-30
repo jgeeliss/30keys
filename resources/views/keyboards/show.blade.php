@@ -37,6 +37,7 @@
     @if($avgRating)
         <small style="color: #666;">&nbsp;&nbsp;&nbsp;★ {{ number_format($avgRating, 1) }} ({{ $totalRatings }} {{ $totalRatings == 1 ? 'rating' : 'ratings' }})</small>
     @endif
+    <span style="font-size: medium; color: #999;">&nbsp;&nbsp;&nbsp;{{ $keyboard->created_at->diffForHumans() }}</span>
 </p>
 
 @if($keyboard->description)
