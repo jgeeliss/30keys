@@ -11,6 +11,25 @@ class KeyboardLayoutSeeder extends Seeder
 {
     public function run(): void
     {
+        // Dutchman Layout
+        $dutchmanUser = User::create([
+            'user_alias' => 'jesse_geelissen',
+            'email' => 'jgeeliss@gmail.com',
+            'password' => Hash::make('password'),
+            'email_verified_at' => now(),
+        ]);
+
+        Keyboard::create([
+            'name' => 'Dutchman',
+            'description' => 'Especially designed for Dutch and English letter frequency optimization.',
+            'layout' => [
+                ['/', 'L', 'R', 'W', 'X', '\'', 'F', 'U', 'O', 'Q'],
+                ['S', 'T', 'N', 'D', 'M', 'P', 'H', 'E', 'A', 'I'],
+                ['v', 'Z', 'J', 'G', 'C', 'B', 'K', 'Y', '.', ','],
+            ],
+            'user_id' => $dutchmanUser->id,
+        ]);
+
         // QWERTY Layout
         $qwertyUser = User::create([
             'user_alias' => 'christopher_sholes',
