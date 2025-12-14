@@ -91,16 +91,7 @@ class KeyboardController extends Controller
         ]);
 
         // Check for duplicate characters in the layout!
-        $allKeys = [];
-        foreach ($validated['layout'] as $row) {
-            foreach ($row as $key) {
-                $allKeys[] = $key;
-            }
-        }
-
-        $duplicates = array_filter(array_count_values($allKeys), function ($count) {
-            return $count > 1;
-        });
+        $duplicates = $this->getDuplicateKeys($validated['layout']);
 
         if (! empty($duplicates)) {
             return back()->withInput()->withErrors([
@@ -161,16 +152,7 @@ class KeyboardController extends Controller
         ]);
 
         // Check for duplicate characters in the layout
-        $allKeys = [];
-        foreach ($validated['layout'] as $row) {
-            foreach ($row as $key) {
-                $allKeys[] = $key;
-            }
-        }
-
-        $duplicates = array_filter(array_count_values($allKeys), function ($count) {
-            return $count > 1;
-        });
+        $duplicates = $this->getDuplicateKeys($validated['layout']);
 
         if (!empty($duplicates)) {
             return back()->withInput()->withErrors([
@@ -193,6 +175,26 @@ class KeyboardController extends Controller
 
         return redirect()->route('keyboards.index')
             ->with('success', 'Keyboard deleted successfully.');
+    }
+
+    /**
+     * Check for duplicate characters in the keyboard layout.
+     *
+     * @param array $layout
+     * @return array Array of duplicate characters (empty if none)
+     */
+    private function getDuplicateKeys(array $layout)
+    {
+        $allKeys = [];
+        foreach ($layout as $row) {
+            foreach ($row as $key) {
+                $allKeys[] = $key;
+            }
+        }
+
+        return array_filter(array_count_values($allKeys), function ($count) {
+            return $count > 1;
+        });
     }
 
     public function rate(Request $request, Keyboard $keyboard)
