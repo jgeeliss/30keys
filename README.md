@@ -46,7 +46,7 @@ After cloning this repository, follow these steps to get started:
 
 5. **Seed the database** (optional)
    ```bash
-   php artisan db:seed
+   php artisan migrate:fresh --seed
    ```
 
 ## Development
@@ -61,7 +61,3 @@ This project uses Laravel Pint for code formatting:
 ```bash
 ./vendor/bin/pint
 ```
-
-## License
-
-This project is open-sourced software licensed under the MIT license.
