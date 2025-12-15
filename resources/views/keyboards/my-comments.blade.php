@@ -16,7 +16,14 @@
                     </h3>
                     <small class="text-muted">by {{ $comment->keyboard->user->user_alias ?? 'Unknown' }}</small>
                 </div>
-                <small class="text-muted">{{ $comment->created_at->diffForHumans() }}</small>
+                <div>
+                    <small class="text-muted">{{ $comment->created_at->diffForHumans() }}</small>
+                    <form action="{{ route('comments.destroy', $comment) }}" method="POST" style="display: inline; margin-left: 10px;" onsubmit="return confirm('Are you sure you want to delete this comment?');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn-delete-small">Delete</button>
+                    </form>
+                </div>
             </div>
             <p class="card-content">{{ $comment->comment }}</p>
         </div>

@@ -248,4 +248,24 @@ class KeyboardController extends Controller
 
         return back()->with('status', 'Comment posted successfully!');
     }
+
+    /**
+     * Delete a comment.
+     */
+    public function deleteComment(\App\Models\Comment $comment)
+    {
+        // Check if user is authenticated
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('status', 'You must be logged in to delete a comment.');
+        }
+
+        // Check if the user owns this comment
+        if ($comment->user_id !== auth()->id()) {
+            return back()->with('status', 'You can only delete your own comments.');
+        }
+
+        $comment->delete();
+
+        return back()->with('status', 'Comment deleted successfully.');
+    }
 }

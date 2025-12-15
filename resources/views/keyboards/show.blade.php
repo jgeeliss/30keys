@@ -83,8 +83,19 @@
     @forelse($keyboard->comments()->latest()->get() as $comment)
         <div class="card-compact">
             <div class="flex-between">
-                <strong>{{ $comment->user->user_alias }}</strong>
-                <small class="text-muted">{{ $comment->created_at->diffForHumans() }}</small>
+                <div>
+                    <strong>{{ $comment->user->user_alias }}</strong>
+                    <small class="text-muted">{{ $comment->created_at->diffForHumans() }}</small>
+                </div>
+                @auth
+                    @if($comment->user_id === auth()->id())
+                        <form action="{{ route('comments.destroy', $comment) }}" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this comment?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn-delete-small">Delete</button>
+                        </form>
+                    @endif
+                @endauth
             </div>
             <p>{{ $comment->comment }}</p>
         </div>
