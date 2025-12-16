@@ -124,8 +124,8 @@ class KeyboardController extends Controller
             return redirect()->route('login')->with('status', 'You must be logged in to edit a keyboard layout.');
         }
 
-        // Check if the user owns this keyboard
-        if ($keyboard->user_id !== auth()->id()) {
+        // Use policy to authorize
+        if (!auth()->user()->can('update', $keyboard)) {
             return redirect()->route('keyboards.show', $keyboard)
                 ->with('status', 'You can only edit your own keyboard layouts.');
         }
@@ -138,8 +138,8 @@ class KeyboardController extends Controller
      */
     public function update(Request $request, Keyboard $keyboard)
     {
-        // Check if the user owns this keyboard
-        if ($keyboard->user_id !== auth()->id()) {
+        // Use policy to authorize
+        if (!auth()->user()->can('update', $keyboard)) {
             return redirect()->route('keyboards.show', $keyboard)
                 ->with('status', 'You can only edit your own keyboard layouts.');
         }
@@ -176,8 +176,8 @@ class KeyboardController extends Controller
             return redirect()->route('login')->with('status', 'You must be logged in to delete a keyboard layout.');
         }
 
-        // Check if the user owns this keyboard
-        if ($keyboard->user_id !== auth()->id()) {
+        // Use policy to authorize
+        if (!auth()->user()->can('delete', $keyboard)) {
             return redirect()->route('keyboards.show', $keyboard)
                 ->with('status', 'You can only delete your own keyboard layouts.');
         }
@@ -259,8 +259,8 @@ class KeyboardController extends Controller
             return redirect()->route('login')->with('status', 'You must be logged in to edit a comment.');
         }
 
-        // Check if the user owns this comment
-        if ($comment->user_id !== auth()->id()) {
+        // Use policy to authorize
+        if (!auth()->user()->can('update', $comment)) {
             return back()->with('status', 'You can only edit your own comments.');
         }
 
@@ -285,8 +285,8 @@ class KeyboardController extends Controller
             return redirect()->route('login')->with('status', 'You must be logged in to delete a comment.');
         }
 
-        // Check if the user owns this comment
-        if ($comment->user_id !== auth()->id()) {
+        // Use policy to authorize
+        if (!auth()->user()->can('delete', $comment)) {
             return back()->with('status', 'You can only delete your own comments.');
         }
 
