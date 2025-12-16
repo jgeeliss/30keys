@@ -43,23 +43,21 @@
     <span class="text-medium text-light-gray">&nbsp;&nbsp;&nbsp;{{ $keyboard->created_at->diffForHumans() }}</span>
 </p>
 
-@can('update', $keyboard)
 <div>
+    @can('update', $keyboard)
     <a href="{{ route('keyboards.edit', $keyboard) }}">
         <button>Edit Layout</button>
     </a>
-</div>
-@endcan
-@can('delete', $keyboard)
-<div>
+    @endcan
+    @can('delete', $keyboard)
     <!-- source: https://laracasts.com/discuss/channels/laravel/laravel-confirm-delete-in-an-alert-in-my-view -->
     <form action="{{ route('keyboards.destroy', $keyboard) }}" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this keyboard layout? This action cannot be undone and will also delete all ratings and comments.');">
         @csrf
         @method('DELETE')
         <button type="submit" class="btn-delete">Delete Layout</button>
     </form>
+    @endcan
 </div>
-@endcan
 
 @if($keyboard->description)
 <p>{{ $keyboard->description }}</p>
