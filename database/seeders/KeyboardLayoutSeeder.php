@@ -402,5 +402,51 @@ class KeyboardLayoutSeeder extends Seeder
             'created_at' => $date21,
             'updated_at' => $date21,
         ]);
+
+        // My own comments on other layouts
+        $date22 = now()->subDays(65);
+        Comment::create([
+            'keyboard_id' => $qwertyKeyboard->id,
+            'user_id' => $dutchmanUser->id,
+            'comment' => 'Used this for most of my life before starting my search for a better layout. It\'s not optimized for efficiency, but there\'s something to be said for the universal standard.',
+            'created_at' => $date22,
+            'updated_at' => $date22,
+        ]);
+
+        $date23 = now()->subDays(52);
+        Comment::create([
+            'keyboard_id' => $dvorakKeyboard->id,
+            'user_id' => $dutchmanUser->id,
+            'comment' => 'Dvorak was a huge inspiration for my own Dutchman layout. The vowel placement on the home row is brilliant. I borrowed some concepts but optimized for Dutch frequency.',
+            'created_at' => $date23,
+            'updated_at' => $date23,
+        ]);
+
+        $date24 = now()->subDays(44);
+        Comment::create([
+            'keyboard_id' => $colemakKeyboard->id,
+            'user_id' => $dutchmanUser->id,
+            'comment' => 'Really solid layout! The fact that it keeps ZXCV in place is genius for keyboard shortcuts. If I weren\'t so invested in my own design, I\'d probably use this.',
+            'created_at' => $date24,
+            'updated_at' => $date24,
+        ]);
+
+        $date25 = now()->subDays(33);
+        Comment::create([
+            'keyboard_id' => $workmanKeyboard->id,
+            'user_id' => $dutchmanUser->id,
+            'comment' => 'The biomechanical approach is fascinating. Workman definitely reduces lateral movement. Great for preventing RSI!',
+            'created_at' => $date25,
+            'updated_at' => $date25,
+        ]);
+
+        $date26 = now()->subDays(18);
+        Comment::create([
+            'keyboard_id' => $normanKeyboard->id,
+            'user_id' => $dutchmanUser->id,
+            'comment' => 'Norman is underrated! Perfect for people who want better efficiency without the learning curve of Dvorak or Colemak. Would definitely recommend this as a first alternative layout.',
+            'created_at' => $date26,
+            'updated_at' => $date26,
+        ]);
     }
 }
