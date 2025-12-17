@@ -7,7 +7,7 @@ Functionele minimum requirements
         Enkel admins kunnen een nieuwe gebruiker manueel aanmaken (en deze al dan niet admin maken) OK
     Profielpagina
         Elke gebruiker heeft zijn eigen publieke profielpagina die toegankelijk is voor iedereen, ook voor niet ingelogde gebruikers TODO
-        Een ingelogde gebruiker kan diens eigen data aanpassen TODO
+        Een ingelogde gebruiker kan diens eigen data aanpassen OK
         Een profiel bevat minstens de volgende data (maar de velden zelf zijn optioneel): TODO
             Username (dus de gebruiker kan zelf kiezen welke naam er op het profiel staat)
             Verjaardag

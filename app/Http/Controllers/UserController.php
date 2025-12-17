@@ -96,4 +96,49 @@ class UserController extends Controller
 
         return back()->with('status', "Admin privileges updated for {$user->user_alias}.");
     }
+
+    /**
+     * Show the form for editing the authenticated user's profile.
+     */
+    public function edit()
+    {
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('status', 'You must be logged in to access this page.');
+        }
+
+        $user = auth()->user();
+        return view('users.edit', compact('user'));
+    }
+
+    /**
+     * Update the authenticated user's profile.
+     */
+    public function update(Request $request)
+    {
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('status', 'You must be logged in to perform this action.');
+        }
+
+        $user = auth()->user();
+
+        $request->validate([
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'user_alias' => 'required|string|min:3|max:15|unique:users,user_alias,' . $user->id,
+            'password' => 'nullable|confirmed|min:6',
+            'birthday' => 'nullable|date|before:today',
+        ]);
+
+        $user->email = $request->email;
+        $user->user_alias = $request->user_alias;
+        $user->birthday = $request->birthday;
+
+        // Only update password if provided
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->save();
+
+        return redirect()->route('users.edit')->with('status', 'Your profile has been updated successfully!');
+    }
 }

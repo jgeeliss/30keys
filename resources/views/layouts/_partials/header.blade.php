@@ -26,6 +26,7 @@
                 <li class="dropdown">
                     <a href="#" onclick="toggleDropdown(event)"><span class="user-icon">👤</span> {{ auth()->user()->user_alias }}</a>
                     <ul id="dropdown-menu" class="dropdown-menu">
+                        <li class="dropdown-item"><a href="{{ route('users.edit') }}">My profile</a></li>
                         <li class="dropdown-item"><a href="{{ route('keyboards.myLayouts') }}">My layouts</a></li>
                         <li class="dropdown-item"><a href="{{ route('comments.index') }}">My comments</a></li>
                         <li class="dropdown-item"><a href="{{ route('ratings.index') }}">My ratings</a></li>

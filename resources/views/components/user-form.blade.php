@@ -6,6 +6,7 @@
     'showAdminCheckbox' => false,
     'showCancel' => false,
     'cancelRoute' => null,
+    'user' => null,
 ])
 
 <h1>{{ $title }}</h1>
@@ -18,32 +19,33 @@
     </ul>
 @endif
 
-<form action="{{ $action }}" method="{{ $method }}" class="form">
+<form action="{{ $action }}" method="{{ $method === 'GET' ? 'GET' : 'POST' }}" class="form">
     @csrf
+    {{ $slot }}
 
     <div class="form-element">
         <label for="email">{{ $showAdminCheckbox ? 'Email' : 'Your email' }}</label>
-        <input type="email" id="email" name="email" value="{{ old('email') }}" {{ $showAdminCheckbox ? 'required' : '' }}>
+        <input type="email" id="email" name="email" value="{{ old('email', $user->email ?? '') }}" {{ $showAdminCheckbox || !$user ? 'required' : '' }}>
     </div>
 
     <div class="form-element">
         <label for="user_alias">{{ $showAdminCheckbox ? 'User Alias' : 'Your user alias' }}</label>
-        <input type="text" id="user_alias" name="user_alias" value="{{ old('user_alias') }}" {{ $showAdminCheckbox ? 'required' : '' }}>
+        <input type="text" id="user_alias" name="user_alias" value="{{ old('user_alias', $user->user_alias ?? '') }}" {{ $showAdminCheckbox || !$user ? 'required' : '' }}>
     </div>
 
     <div class="form-element">
         <label for="birthday">Birthday (optional)</label>
-        <input type="date" id="birthday" name="birthday" value="{{ old('birthday') }}">
+        <input type="date" id="birthday" name="birthday" value="{{ old('birthday', $user && $user->birthday ? $user->birthday->format('Y-m-d') : '') }}">
     </div>
 
     <div class="form-element">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" {{ $showAdminCheckbox ? 'required' : '' }}>
+        <label for="password">Password{{ $user ? ' (leave blank to keep current)' : '' }}</label>
+        <input type="password" id="password" name="password" {{ $showAdminCheckbox || !$user ? 'required' : '' }}>
     </div>
 
     <div class="form-element">
         <label for="password_confirmation">{{ $showAdminCheckbox ? 'Confirm Password' : 'Confirm password' }}</label>
-        <input type="password" id="password_confirmation" name="password_confirmation" {{ $showAdminCheckbox ? 'required' : '' }}>
+        <input type="password" id="password_confirmation" name="password_confirmation" {{ $showAdminCheckbox || !$user ? 'required' : '' }}>
     </div>
 
     @if ($showAdminCheckbox)
