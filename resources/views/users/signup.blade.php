@@ -24,6 +24,11 @@
         </div>
 
         <div class="form-element">
+            <label for="birthday">Birthday (optional)</label>
+            <input type="date" id="birthday" name="birthday" value="{{ old('birthday') }}">
+        </div>
+
+        <div class="form-element">
             <label for="password">Password</label>
             <input type="password" id="password" name="password">
         </div>

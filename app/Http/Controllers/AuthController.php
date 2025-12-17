@@ -20,6 +20,7 @@ class AuthController extends Controller
             'email' => 'required|email',
             'user_alias' => 'required|string|min:3|max:15',
             'password' => 'required|confirmed|min:6',
+            'birthday' => 'nullable|date|before:today',
         ]);
 
         if (User::where('email', $request->get('email'))->first()) {
@@ -34,6 +35,7 @@ class AuthController extends Controller
         $user->email = $request->get('email');
         $user->user_alias = $request->get('user_alias');
         $user->password = Hash::make($request->get('password'));
+        $user->birthday = $request->get('birthday');
         $user->save();
         Auth::login($user);
 
