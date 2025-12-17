@@ -15,6 +15,14 @@ class UserPolicy
     }
 
     /**
+     * Determine if the user can create new users.
+     */
+    public function create(User $user): bool
+    {
+        return $user->is_admin;
+    }
+
+    /**
      * Determine if the user can toggle admin status.
      */
     public function toggleAdmin(User $user, User $targetUser): bool
