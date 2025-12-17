@@ -75,6 +75,11 @@ class KeyboardController extends Controller
             return back()->with('status', 'You must be logged in to create a keyboard layout.');
         }
 
+        // Use policy to authorize
+        if (!auth()->user()->can('create', Keyboard::class)) {
+            return redirect()->route('keyboards.index')->with('status', 'Admins cannot create keyboard layouts.');
+        }
+
         return view('keyboards.create');
     }
 
@@ -83,6 +88,11 @@ class KeyboardController extends Controller
      */
     public function store(Request $request)
     {
+        // Use policy to authorize
+        if (!auth()->user()->can('create', Keyboard::class)) {
+            return redirect()->route('keyboards.index')->with('status', 'Admins cannot create keyboard layouts.');
+        }
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',

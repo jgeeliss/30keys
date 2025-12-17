@@ -30,7 +30,8 @@ class KeyboardPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        // Admins cannot create keyboard layouts
+        return !$user->isAdmin();
     }
 
     /**
