@@ -31,7 +31,6 @@ class KeyboardLayoutSeeder extends Seeder
             ],
             'user_id' => $dutchmanUser->id,
             'created_at' => now()->subDays(rand(1, 120)),
-            'updated_at' => now()->subDays(rand(1, 120)),
         ]);
 
         $stonerKeyboard = Keyboard::create([
@@ -44,7 +43,6 @@ class KeyboardLayoutSeeder extends Seeder
             ],
             'user_id' => $dutchmanUser->id,
             'created_at' => now()->subDays(rand(120, 240)),
-            'updated_at' => now()->subDays(rand(120, 240)),
         ]);
 
         // QWERTY Layout
@@ -65,7 +63,6 @@ class KeyboardLayoutSeeder extends Seeder
             ],
             'user_id' => $qwertyUser->id,
             'created_at' => now()->subDays(rand(1, 120)),
-            'updated_at' => now()->subDays(rand(1, 120)),
         ]);
 
         // Dvorak Simplified Keyboard
@@ -86,7 +83,6 @@ class KeyboardLayoutSeeder extends Seeder
             ],
             'user_id' => $dvorakUser->id,
             'created_at' => now()->subDays(rand(1, 120)),
-            'updated_at' => now()->subDays(rand(1, 120)),
         ]);
 
         // Colemak
@@ -107,7 +103,6 @@ class KeyboardLayoutSeeder extends Seeder
             ],
             'user_id' => $colemakUser->id,
             'created_at' => now()->subDays(rand(1, 120)),
-            'updated_at' => now()->subDays(rand(1, 120)),
         ]);
 
         // Workman
@@ -128,7 +123,6 @@ class KeyboardLayoutSeeder extends Seeder
             ],
             'user_id' => $workmanUser->id,
             'created_at' => now()->subDays(rand(1, 120)),
-            'updated_at' => now()->subDays(rand(1, 120)),
         ]);
 
         // Norman
@@ -149,7 +143,6 @@ class KeyboardLayoutSeeder extends Seeder
             ],
             'user_id' => $normanUser->id,
             'created_at' => now()->subDays(rand(1, 120)),
-            'updated_at' => now()->subDays(rand(1, 120)),
         ]);
 
         // Create some random raters
