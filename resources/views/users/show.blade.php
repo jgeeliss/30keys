@@ -18,5 +18,29 @@
                 <a href="{{ route('users.edit') }}" class="btn btn-secondary">Edit My Profile</a>
             @endif
         </div>
+
+        <section>
+            <h2>Keyboard Layouts ({{ $keyboards->count() }})</h2>
+
+            @forelse($keyboards as $keyboard)
+                <div>
+                    <h3>
+                        <a href="{{ route('keyboards.show', $keyboard) }}">{{ $keyboard->name }}</a>
+                        @if($keyboard->ratings_count > 0)
+                            <span class="text-medium text-gray">&nbsp;&nbsp;&nbsp;★ {{ number_format($keyboard->averageRating(), 1) }} ({{ $keyboard->totalRatings() }} {{ $keyboard->totalRatings() === 1 ? 'rating' : 'ratings' }})</span>
+                        @endif
+                        <span class="text-medium text-light-gray">&nbsp;&nbsp;&nbsp;{{ $keyboard->created_at->diffForHumans() }}</span>
+                    </h3>
+
+                    @if($keyboard->description)
+                        <p>{{ $keyboard->description }}</p>
+                    @endif
+
+                    @include('keyboards._layout', ['keyboard' => $keyboard])
+                </div>
+            @empty
+                <p class="text-muted">This user hasn't created any keyboard layouts yet.</p>
+            @endforelse
+        </section>
     </div>
 @endsection

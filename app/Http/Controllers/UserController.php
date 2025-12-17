@@ -102,7 +102,10 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.show', compact('user'));
+        // Load user's keyboards with ratings
+        $keyboards = $user->keyboards()->withCount('ratings')->latest()->get();
+
+        return view('users.show', compact('user', 'keyboards'));
     }
 
     /**
