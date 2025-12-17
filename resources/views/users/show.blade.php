@@ -5,6 +5,12 @@
         <div class="profile-header">
             <h1>{{ $user->user_alias }}'s Profile</h1>
 
+            @if($user->profile_picture)
+                <div style="margin: 20px 0;">
+                    <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="{{ $user->user_alias }}'s profile picture">
+                </div>
+            @endif
+
             <div class="profile-info">
                 <p><strong>Email:</strong> {{ $user->email }}</p>
 

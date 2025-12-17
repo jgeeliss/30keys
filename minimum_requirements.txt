@@ -8,10 +8,10 @@ Functionele minimum requirements
     Profielpagina
         Elke gebruiker heeft zijn eigen publieke profielpagina die toegankelijk is voor iedereen, ook voor niet ingelogde gebruikers OK
         Een ingelogde gebruiker kan diens eigen data aanpassen OK
-        Een profiel bevat minstens de volgende data (maar de velden zelf zijn optioneel): TODO
+        Een profiel bevat minstens de volgende data (maar de velden zelf zijn optioneel): OK
             Username (dus de gebruiker kan zelf kiezen welke naam er op het profiel staat) OK
             Verjaardag OK
-            Profielfoto (dat op de webserver zal bewaard worden) TODO
+            Profielfoto (dat op de webserver zal bewaard worden) OK
             Kleine "over mij" tekst OK
     Laatste nieuwtjes
         Admins kunnen nieuwe nieuwsitems toevoegen, wijzigen en verwijderen TODO
