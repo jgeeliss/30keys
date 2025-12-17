@@ -12,7 +12,13 @@
                 <div>
                     <h3>
                         <a href="{{ route('keyboards.show', $keyboard) }}">{{ $keyboard->name }}</a>
-                        <span class="text-medium">&nbsp;&nbsp;&nbsp;by {{ $keyboard->user->user_alias ?? 'Unknown' }}</span>
+                        <span class="text-medium">&nbsp;&nbsp;&nbsp;by
+                            @if($keyboard->user)
+                                <a href="{{ route('users.show', $keyboard->user) }}">{{ $keyboard->user->user_alias }}</a>
+                            @else
+                                Unknown
+                            @endif
+                        </span>
                         @if($keyboard->totalRatings() > 0)
                             <span class="text-medium text-gray">&nbsp;&nbsp;&nbsp;★ {{ number_format($keyboard->averageRating(), 1) }} ({{ $keyboard->totalRatings() }} {{ $keyboard->totalRatings() === 1 ? 'rating' : 'ratings' }})</span>
                         @endif
@@ -31,7 +37,13 @@
                 <div>
                     <h3>
                         <a href="{{ route('keyboards.show', $keyboard) }}">{{ $keyboard->name }}</a>
-                        <span class="text-medium">&nbsp;&nbsp;&nbsp;by {{ $keyboard->user->user_alias ?? 'Unknown' }}</span>
+                        <span class="text-medium">&nbsp;&nbsp;&nbsp;by
+                            @if($keyboard->user)
+                                <a href="{{ route('users.show', $keyboard->user) }}">{{ $keyboard->user->user_alias }}</a>
+                            @else
+                                Unknown
+                            @endif
+                        </span>
                         @if($keyboard->totalRatings() > 0)
                             <span class="text-medium text-gray">&nbsp;&nbsp;&nbsp;★ {{ number_format($keyboard->averageRating(), 1) }} ({{ $keyboard->totalRatings() }} {{ $keyboard->totalRatings() === 1 ? 'rating' : 'ratings' }})</span>
                         @endif

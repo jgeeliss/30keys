@@ -16,6 +16,7 @@ Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
 Route::post('/users', [UserController::class, 'store'])->name('users.store');
 Route::post('/users/{user}/toggle-admin', [UserController::class, 'toggleAdmin'])->name('users.toggleAdmin');
+Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
 Route::get('/profile/edit', [UserController::class, 'edit'])->name('users.edit');
 Route::put('/profile', [UserController::class, 'update'])->name('users.update');
 

@@ -98,6 +98,14 @@ class UserController extends Controller
     }
 
     /**
+     * Display a public user profile.
+     */
+    public function show(User $user)
+    {
+        return view('users.show', compact('user'));
+    }
+
+    /**
      * Show the form for editing the authenticated user's profile.
      */
     public function edit()

@@ -36,7 +36,13 @@
 
 <h2>{{ $keyboard->name }}</h2>
 <p>
-    <small>by {{ $keyboard->user->user_alias ?? 'Unknown' }}</small>
+    <small>by
+        @if($keyboard->user)
+            <a href="{{ route('users.show', $keyboard->user) }}">{{ $keyboard->user->user_alias }}</a>
+        @else
+            Unknown
+        @endif
+    </small>
     @if($avgRating)
         <small class="text-gray">&nbsp;&nbsp;&nbsp;★ {{ number_format($avgRating, 1) }} ({{ $totalRatings }} {{ $totalRatings == 1 ? 'rating' : 'ratings' }})</small>
     @endif
@@ -86,7 +92,7 @@
         <div class="card-compact" id="comment-{{ $comment->id }}">
             <div class="flex-between">
                 <div>
-                    <strong>{{ $comment->user->user_alias }}</strong>
+                    <strong><a href="{{ route('users.show', $comment->user) }}">{{ $comment->user->user_alias }}</a></strong>
                     <small class="text-muted">{{ $comment->created_at->diffForHumans() }}</small>
                     @if($comment->created_at != $comment->updated_at)
                         <small class="text-muted">(edited)</small>
