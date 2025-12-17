@@ -54,9 +54,9 @@ class User extends Authenticatable
         return $this->is_admin;
     }
 
-    public function keyboards(): BelongsToMany
+    public function keyboards()
     {
-        return $this->belongsToMany(Keyboard::class);
+        return $this->hasMany(Keyboard::class);
     }
 
     public function ratings()
