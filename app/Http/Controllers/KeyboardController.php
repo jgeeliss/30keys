@@ -93,6 +93,9 @@ class KeyboardController extends Controller
             return redirect()->route('keyboards.index')->with('status', 'Admins cannot create keyboard layouts.');
         }
 
+        // note: I'm using the validate method on the request instance here per the Laravel docs
+        // in stead of accessing the superglobals $_GET or $_POST directly
+        // https://laravel.com/docs/12.x/validation#quick-writing-the-validation-logic
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
