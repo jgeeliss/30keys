@@ -514,8 +514,7 @@ class KeyboardLayoutSeeder extends Seeder
     private function copyProfilePicturesFromSeederToPublicStorage(): void
     {
         $sourceDir = database_path('seeders/profile_pictures');
-        $destDir = public_path('storage/profile_pictures');
-
+        $destDir = storage_path('app/public/profile_pictures');
         // Create destination directory if it doesn't exist
         if (!File::exists($destDir)) {
             File::makeDirectory($destDir, 0755, true);

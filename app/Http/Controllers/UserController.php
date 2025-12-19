@@ -73,10 +73,7 @@ class UserController extends Controller
 
         $profilePicturePath = null;
         if ($request->hasFile('profile_picture')) {
-            $file = $request->file('profile_picture');
-            $filename = time() . '_' . $request->user_alias . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('storage/profile_pictures'), $filename);
-            $profilePicturePath = 'profile_pictures/' . $filename;
+            $profilePicturePath = $request->file('profile_picture')->store('profile_pictures', 'public');
         }
 
         $user = User::create([
@@ -165,16 +162,9 @@ class UserController extends Controller
         if ($request->hasFile('profile_picture')) {
             // Delete old profile picture if exists
             if ($user->profile_picture) {
-                $oldPath = public_path('storage/' . $user->profile_picture);
-                if (file_exists($oldPath)) {
-                    unlink($oldPath);
-                }
+                \Storage::disk('public')->delete($user->profile_picture);
             }
-
-            $file = $request->file('profile_picture');
-            $filename = time() . '_' . $user->user_alias . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('storage/profile_pictures'), $filename);
-            $user->profile_picture = 'profile_pictures/' . $filename;
+            $user->profile_picture = $request->file('profile_picture')->store('profile_pictures', 'public');
         }
 
         // Only update password if provided
