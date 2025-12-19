@@ -15,6 +15,13 @@
         @can('update', $newsitem)
             <a href="{{ route('newsitems.edit', $newsitem) }}" class="button">Edit</a>
         @endcan
+        @can('delete', $newsitem)
+            <form action="{{ route('newsitems.destroy', $newsitem) }}" method="POST" style="display: inline;">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn-delete" onclick="return confirm('Are you sure you want to delete this news item?')">Delete</button>
+            </form>
+        @endcan
     </div>
 </div>
 

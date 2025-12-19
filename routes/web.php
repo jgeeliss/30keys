@@ -19,6 +19,7 @@ Route::post('/news', [NewsitemController::class, 'store'])->name('newsitems.stor
 Route::get('/news/{newsitem}', [NewsitemController::class, 'show'])->name('newsitems.show');
 Route::get('/news/{newsitem}/edit', [NewsitemController::class, 'edit'])->name('newsitems.edit');
 Route::put('/news/{newsitem}', [NewsitemController::class, 'update'])->name('newsitems.update');
+Route::delete('/news/{newsitem}', [NewsitemController::class, 'destroy'])->name('newsitems.destroy');
 
 // User routes
 Route::get('/users', [UserController::class, 'index'])->name('users.index');

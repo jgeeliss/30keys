@@ -71,4 +71,17 @@ class NewsitemController extends Controller
         return redirect()->route('newsitems.show', $newsitem)
             ->with('status', 'News item updated successfully!');
     }
+
+    public function destroy(Newsitem $newsitem)
+    {
+        if (!auth()->user()->can('delete', $newsitem)) {
+            return redirect()->route('newsitems.index')
+                ->with('status', 'You do not have permission to delete this news item.');
+        }
+
+        $newsitem->delete();
+
+        return redirect()->route('newsitems.index')
+            ->with('status', 'News item deleted successfully!');
+    }
 }

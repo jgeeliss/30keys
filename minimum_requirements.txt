@@ -14,7 +14,7 @@ Functionele minimum requirements
             Profielfoto (dat op de webserver zal bewaard worden) OK
             Kleine "over mij" tekst OK
     Laatste nieuwtjes
-        Admins kunnen nieuwe nieuwsitems toevoegen, wijzigen en verwijderen TODO
+        Admins kunnen nieuwe nieuwsitems toevoegen, wijzigen en verwijderen OK
         Elke bezoeker kan een lijst van alle nieuwtjes en een detail per nieuwtje zien OK
         De nieuwsitems hebben minstens: TODO
             Titel
