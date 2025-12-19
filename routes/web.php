@@ -7,10 +7,20 @@ use App\Http\Controllers\NewsitemController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\FaqController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
 Route::view('/about', 'about')->name('about');
+
+// Faq routes
+Route::get('/faqs', [FaqController::class, 'index'])->name('faqs.index');
+Route::get('/faqs/create', [FaqController::class, 'create'])->name('faqs.create');
+Route::post('/faqs', [FaqController::class, 'store'])->name('faqs.store');
+Route::get('/faqs/{faq}', [FaqController::class, 'show'])->name('faqs.show');
+Route::get('/faqs/{faq}/edit', [FaqController::class, 'edit'])->name('faqs.edit');
+Route::put('/faqs/{faq}', [FaqController::class, 'update'])->name('faqs.update');
+Route::delete('/faqs/{faq}', [FaqController::class, 'destroy'])->name('faqs.destroy');
 
 // News routes
 Route::get('/news', [NewsitemController::class, 'index'])->name('newsitems.index');

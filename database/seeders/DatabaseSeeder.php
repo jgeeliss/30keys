@@ -29,5 +29,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminUserSeeder::class);
         // Seed news items
         $this->call(NewsitemSeeder::class);
+        // Seed FAQs
+        $this->call(FaqSeeder::class);
     }
 }

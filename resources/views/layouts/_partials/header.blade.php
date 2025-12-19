@@ -20,8 +20,8 @@
             <li class="dropdown">
                 <a href="#" onclick="toggleInfoDropdown(event)">Info</a>
                 <ul id="info-dropdown-menu" class="dropdown-menu">
-                        <li class="dropdown-item"><a href="{{ route('about') }}">About</a></li>
-                        <li class="dropdown-item"><a href="{{ route('about') }}">FAQ</a></li>
+                    <li class="dropdown-item"><a href="{{ route('about') }}">About</a></li>
+                    <li class="dropdown-item"><a href="{{ route('faqs.index') }}">FAQ</a></li>
                 </ul>
             <!-- a spacer here -->
             <li class="nav-spacer"></li>
