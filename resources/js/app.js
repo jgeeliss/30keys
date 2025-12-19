@@ -7,6 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Match current URL path to nav links
     allHeaderNavLinks.forEach(link => {
+        // Skip links that are dropdown triggers (href="#")
+        const linkHref = link.getAttribute('href');
+        if (linkHref === '#') {
+            return;
+        }
+
         const linkPath = new URL(link.href).pathname;
         if (linkPath === currentPath) {
             link.classList.add('last-clicked');
