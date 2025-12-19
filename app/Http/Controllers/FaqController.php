@@ -9,7 +9,7 @@ class FaqController extends Controller
 {
     public function index()
     {
-        $faqs = Faq::orderBy('created_at', 'desc')->get();
+        $faqs = Faq::orderBy('created_at', 'desc')->get()->groupBy('category');
         return view('faqs.index', compact('faqs'));
     }
 
@@ -30,6 +30,7 @@ class FaqController extends Controller
         }
 
         $validated = $request->validate([
+            'category' => 'required|in:beginner,moderate,expert',
             'question' => 'required|string|max:255',
             'answer' => 'required|string',
         ]);
@@ -62,6 +63,7 @@ class FaqController extends Controller
         }
 
         $validated = $request->validate([
+            'category' => 'required|in:beginner,moderate,expert',
             'question' => 'required|string|max:255',
             'answer' => 'required|string',
         ]);

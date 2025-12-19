@@ -11,16 +11,23 @@
 @if($faqs->isEmpty())
     <p class="text-gray">No FAQs yet.</p>
 @else
-    <div>
-        @foreach($faqs as $faq)
+    @foreach(['beginner', 'moderate', 'expert'] as $category)
+        @if($faqs->has($category))
             <div>
-                <h3>
-                    <a href="{{ route('faqs.show', $faq) }}">{{ $faq->question }}</a>
-                </h3>
-                <p class="text-gray">{{ $faq->created_at->format('F j, Y') }}</p>
+                <h2>{{ $category }}</h2>
+                <div>
+                    @foreach($faqs[$category] as $faq)
+                        <div>
+                            <h3>
+                                <a href="{{ route('faqs.show', $faq) }}">{{ $faq->question }}</a>
+                            </h3>
+                            <p class="text-gray">{{ $faq->created_at->format('F j, Y') }}</p>
+                        </div>
+                    @endforeach
+                </div>
             </div>
-        @endforeach
-    </div>
+        @endif
+    @endforeach
 @endif
 
 @endsection
