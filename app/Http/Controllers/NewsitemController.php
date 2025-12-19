@@ -32,7 +32,15 @@ class NewsitemController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'body' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        // note: uses Laravel's Storage facade to handle file uploads, filename is auto-generated
+        // source: https://laravel.com/docs/12.x/filesystem#file-uploads
+        if ($request->hasFile('image')) {
+            // note: store the image in the 'newsitems' directory in the 'public' disk
+            $validated['image'] = $request->file('image')->store('newsitems', 'public');
+        }
 
         Newsitem::create($validated);
 
@@ -64,7 +72,16 @@ class NewsitemController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'body' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        if ($request->hasFile('image')) {
+            // Delete old image if it exists
+            if ($newsitem->image) {
+                \Storage::disk('public')->delete($newsitem->image);
+            }
+            $validated['image'] = $request->file('image')->store('newsitems', 'public');
+        }
 
         $newsitem->update($validated);
 
@@ -77,6 +94,11 @@ class NewsitemController extends Controller
         if (!auth()->user()->can('delete', $newsitem)) {
             return redirect()->route('newsitems.index')
                 ->with('status', 'You do not have permission to delete this news item.');
+        }
+
+        // Delete image if exists
+        if ($newsitem->image) {
+            \Storage::disk('public')->delete($newsitem->image);
         }
 
         $newsitem->delete();

@@ -6,6 +6,12 @@
     <h1>{{ $newsitem->title }}</h1>
     <p class="text-gray">Published on {{ $newsitem->created_at->format('F j, Y') }}</p>
 
+    @if($newsitem->image)
+        <div>
+            <img src="{{ asset('storage/' . $newsitem->image) }}" alt="{{ $newsitem->title }}" style="max-width: 50%; height: auto;">
+        </div>
+    @endif
+
     <div>
         <p>{{ $newsitem->body }}</p>
     </div>

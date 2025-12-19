@@ -9,5 +9,6 @@ class Newsitem extends Model
     protected $fillable = [
         'title',
         'body',
+        'image',
     ];
 }

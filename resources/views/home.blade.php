@@ -39,6 +39,7 @@
                         <a href="{{ route('newsitems.show', $newsitem) }}">{{ $newsitem->title }}</a>
                         <span class="text-medium text-light-gray">&nbsp;&nbsp;&nbsp;{{ $newsitem->created_at->diffForHumans() }}</span>
                     </h3>
+                    <!-- note: only show the first 150 characters of the news item body -->
                     <p class="text-gray">{{ Str::limit($newsitem->body, 150) }}</p>
                 </div>
             @endforeach

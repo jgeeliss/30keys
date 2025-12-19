@@ -4,7 +4,7 @@
 <div>
     <h2>Create News Item</h2>
 
-    <form action="{{ route('newsitems.store') }}" method="POST">
+    <form action="{{ route('newsitems.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div>
@@ -30,6 +30,18 @@
                 rows="10"
                 required
                 placeholder="Enter news content">{{ old('body') }}</textarea>
+        </div>
+
+        <div>
+            <label for="image">
+                Image (optional)
+            </label>
+            <input
+                type="file"
+                name="image"
+                id="image"
+                accept="image/*">
+            <small class="text-muted">Max size: 2MB. Accepted formats: JPEG, PNG, JPG, GIF</small>
         </div>
 
         <div>
