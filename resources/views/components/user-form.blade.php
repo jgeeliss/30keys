@@ -48,7 +48,7 @@
         <label for="profile_picture">Profile picture (optional)</label>
         @if($user && $user->profile_picture)
             <div>
-                <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="Profile picture">
+                <img style="max-width: 30%;" src="{{ asset('storage/' . $user->profile_picture) }}" alt="Profile picture">
             </div>
         @endif
         <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
