@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\FaqCategoryController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ForgotPasswordLinkController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
@@ -79,3 +80,9 @@ Route::post('/signup', [AuthController::class, 'store']);
 Route::get('/login', [AuthController::class, 'goToLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'storeLogin']);
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// Password reset routes
+Route::get('/forgot-password', [ForgotPasswordLinkController::class, 'showForgotPasswordForm'])->name('password.request');
+Route::post('/forgot-password', [ForgotPasswordLinkController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('/reset-password/{token}', [ForgotPasswordLinkController::class, 'showResetPasswordForm'])->name('password.reset');
+Route::post('/reset-password', [ForgotPasswordLinkController::class, 'reset'])->name('password.update');

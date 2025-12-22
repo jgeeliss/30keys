@@ -63,7 +63,7 @@ Naast de functionele requirements zijn er ook enkele technische standaarden die 
             Log in/out OK
             'Remember me' OK
             Registreer OK
-            Mogelijkheid om wachtwoord te resetten bij vergeten wachtwoord TODO
+            Mogelijkheid om wachtwoord te resetten bij vergeten wachtwoord OK
         Voeg één default admin toe OK
             Username: admin
             Email: admin@ehb.be

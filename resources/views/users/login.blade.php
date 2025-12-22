@@ -27,4 +27,6 @@
 
         <input type="submit" value="Log in">
     </form>
+
+    <p><a href="{{ route('password.request') }}">Forgot your password?</a></p>
 @endsection
