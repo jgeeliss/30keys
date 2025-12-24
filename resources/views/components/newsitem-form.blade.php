@@ -1,9 +1,12 @@
+<!-- Anonymous Blade Components -->
+<!-- source: https://laravel.com/docs/12.x/blade#anonymous-components --> 
+
 @props([
-    'action',
-    'method' => 'POST',
-    'newsitem' => null,
-    'submitText' => 'Submit',
-    'cancelRoute'
+    'action', // form submission URL, store if creating, update if editing
+    'method' => 'POST', // HTTP method for the form, POST for create, PUT for update
+    'newsitem' => null, // news item model instance, empty for create, populated for edit
+    'submitText', // text for the submit button
+    'cancelRoute' // URL for the cancel button
 ])
 
 <form action="{{ $action }}" method="POST" enctype="multipart/form-data">

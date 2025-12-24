@@ -1,12 +1,15 @@
+<!-- Anonymous Blade Components -->
+<!-- source: https://laravel.com/docs/12.x/blade#anonymous-components -->
+
 @props([
-    'title' => 'User Form',
-    'action' => '',
-    'method' => 'POST',
-    'submitText' => 'Submit',
-    'showAdminCheckbox' => false,
-    'showCancel' => false,
-    'cancelRoute' => null,
-    'user' => null,
+    'title' => 'User Form', // default title if none provided
+    'action' => '', // form submission URL, store if creating, update if editing
+    'method' => 'POST', // HTTP method for the form, POST for create, PUT for update
+    'submitText', // text for the submit button
+    'showAdminCheckbox' => false, // whether to show the admin checkbox
+    'showCancel' => false, // whether to show the cancel button
+    'cancelRoute' => null, // URL for the cancel button
+    'user' => null, // user model instance
 ])
 
 <h1>{{ $title }}</h1>
