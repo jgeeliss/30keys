@@ -22,13 +22,14 @@
 
         <div>
             <label for="order">
-                Order
+                Order <span>*</span>
             </label>
             <input
                 type="number"
                 name="order"
                 id="order"
                 value="{{ old('order', 0) }}"
+                required
                 placeholder="Display order (0 = first)">
         </div>
 

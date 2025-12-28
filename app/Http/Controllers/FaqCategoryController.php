@@ -32,7 +32,7 @@ class FaqCategoryController extends Controller
         try {
             $validated = $request->validate([
                 'name' => 'required|string|max:255|unique:faq_categories,name',
-                'order' => 'nullable|integer',
+                'order' => 'required|integer',
             ]);
 
             FaqCategory::create($validated);
@@ -65,7 +65,7 @@ class FaqCategoryController extends Controller
         try {
             $validated = $request->validate([
                 'name' => 'required|string|max:255|unique:faq_categories,name,' . $faqCategory->id,
-                'order' => 'nullable|integer',
+                'order' => 'required|integer',
             ]);
 
             $faqCategory->update($validated);
