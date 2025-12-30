@@ -30,8 +30,8 @@ class RatingController extends Controller
      */
     public function store(Request $request, Keyboard $keyboard)
     {
-        // Prevent users from rating their own layouts
-        if ($keyboard->user_id === auth()->id()) {
+        // Use policy to authorize
+        if (!auth()->user()->can('rate', $keyboard)) {
             return back()->withErrors(['rating' => 'You cannot rate your own keyboard layout.']);
         }
 

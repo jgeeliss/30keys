@@ -67,4 +67,13 @@ class KeyboardPolicy
     {
         return false;
     }
+
+    /**
+     * Determine whether the user can rate the keyboard.
+     * Users cannot rate their own keyboard layouts.
+     */
+    public function rate(User $user, Keyboard $keyboard): bool
+    {
+        return $keyboard->user_id !== $user->id;
+    }
 }
