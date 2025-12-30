@@ -33,5 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->call(FaqCategorySeeder::class);
         // Seed FAQs
         $this->call(FaqSeeder::class);
+        // Seed Language Tags
+        $this->call(LanguageTagSeeder::class);
     }
 }

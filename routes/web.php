@@ -11,6 +11,7 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\FaqCategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ForgotPasswordLinkController;
+use App\Http\Controllers\LanguageTagController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
@@ -45,6 +46,15 @@ Route::get('/news/{newsitem}', [NewsitemController::class, 'show'])->name('newsi
 Route::get('/news/{newsitem}/edit', [NewsitemController::class, 'edit'])->name('newsitems.edit');
 Route::put('/news/{newsitem}', [NewsitemController::class, 'update'])->name('newsitems.update');
 Route::delete('/news/{newsitem}', [NewsitemController::class, 'destroy'])->name('newsitems.destroy');
+
+// Language Tag routes
+Route::get('/language-tags', [LanguageTagController::class, 'index'])->name('language-tags.index');
+Route::get('/language-tags/create', [LanguageTagController::class, 'create'])->name('language-tags.create');
+Route::post('/language-tags', [LanguageTagController::class, 'store'])->name('language-tags.store');
+Route::get('/language-tags/{languageTag}', [LanguageTagController::class, 'show'])->name('language-tags.show');
+Route::get('/language-tags/{languageTag}/edit', [LanguageTagController::class, 'edit'])->name('language-tags.edit');
+Route::put('/language-tags/{languageTag}', [LanguageTagController::class, 'update'])->name('language-tags.update');
+Route::delete('/language-tags/{languageTag}', [LanguageTagController::class, 'destroy'])->name('language-tags.destroy');
 
 // User routes
 Route::get('/users', [UserController::class, 'index'])->name('users.index');

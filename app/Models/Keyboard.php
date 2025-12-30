@@ -22,11 +22,13 @@ class Keyboard extends Model
 
     public function user()
     {
+        // relation many-to-one: many keyboards belong to one user
         return $this->belongsTo(User::class);
     }
 
     public function ratings()
     {
+        // relation one-to-many: one keyboard has many ratings
         return $this->hasMany(Rating::class);
     }
 
@@ -42,6 +44,15 @@ class Keyboard extends Model
 
     public function comments()
     {
+        // relation one-to-many: one keyboard has many comments
         return $this->hasMany(Comment::class);
+    }
+
+    /**
+     * Many-to-many relationship: a keyboard can have many language tags
+     */
+    public function languageTags()
+    {
+        return $this->belongsToMany(LanguageTag::class, 'keyboard_language_tag');
     }
 }
