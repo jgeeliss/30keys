@@ -21,7 +21,7 @@
 
         <div>
             <label for="name">
-                Keyboard Name <span>*</span>
+                Keyboard Name *
             </label>
             <input
                 type="text"
@@ -41,6 +41,26 @@
                 id="description"
                 rows="5"
                 placeholder="Enter keyboard description">{{ old('description', $keyboard->description ?? '') }}</textarea>
+        </div>
+
+        <div>
+            <label for="language_tags">
+                Language Tags (Optional)
+            </label>
+            <p class="text-small text-gray">Select the languages this keyboard layout supports</p>
+            @php
+                $selectedTags = old('language_tags', isset($keyboard) ? $keyboard->languageTags->pluck('id')->toArray() : []);
+            @endphp
+            @foreach($languageTags as $tag)
+                <label style="display: inline-block; margin-right: 1rem;">
+                    <input 
+                        type="checkbox" 
+                        name="language_tags[]" 
+                        value="{{ $tag->id }}"
+                        {{ in_array($tag->id, $selectedTags) ? 'checked' : '' }}>
+                    {{ $tag->name }}
+                </label>
+            @endforeach
         </div>
 
         <div>

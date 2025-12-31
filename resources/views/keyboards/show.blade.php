@@ -68,6 +68,16 @@
 @if($keyboard->description)
 <p>{{ $keyboard->description }}</p>
 @endif
+
+@if($keyboard->languageTags->count() > 0)
+<p class="text-small">
+    <strong>Languages:</strong> 
+    @foreach($keyboard->languageTags as $tag)
+        <a href="{{ route('language-tags.show', $tag) }}" class="tag-badge">{{ $tag->name }}</a>{{ !$loop->last ? ', ' : '' }}
+    @endforeach
+</p>
+@endif
+
 @include('keyboards._layout', ['keyboard' => $keyboard])
 
 @if(auth()->check())

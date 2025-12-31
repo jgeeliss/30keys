@@ -46,7 +46,8 @@ class KeyboardController extends Controller
             return redirect()->route('keyboards.index')->with('status', 'Admins cannot create keyboard layouts.');
         }
 
-        return view('keyboards.create');
+        $languageTags = \App\Models\LanguageTag::orderBy('name')->get();
+        return view('keyboards.create', compact('languageTags'));
     }
 
     /**
@@ -67,6 +68,9 @@ class KeyboardController extends Controller
             'description' => 'nullable|string',
             'layout' => 'required|array',
             'layout.*.*' => 'required|string',
+            'language_tags' => 'nullable|array',
+            // check that each provided language tag exists in the language_tags table:
+            'language_tags.*' => 'exists:language_tags,id',
         ]);
 
         // Check for duplicate characters in the layout!
@@ -74,12 +78,20 @@ class KeyboardController extends Controller
 
         if (! empty($duplicates)) {
             return back()->withInput()->withErrors([
+                // implode() joins array elements into a string with a separator
                 'layout' => 'Each character can only be used once in the layout. Duplicate characters: '.implode(', ', array_keys($duplicates)),
             ]);
         }
 
         $validated['user_id'] = auth()->id();
         $keyboard = Keyboard::create($validated);
+
+        // Attach language tags if provided
+        if (isset($validated['language_tags'])) {
+            // sync() is specifically used to update many-to-many relationships in
+            // it updates the pivot table (keyboard_language_tag) to match exactly what's in the provided array
+            $keyboard->languageTags()->sync($validated['language_tags']);
+        }
 
         return redirect()->route('keyboards.index')
             ->with('success', 'Keyboard created successfully.');
@@ -109,7 +121,8 @@ class KeyboardController extends Controller
                 ->with('status', 'You can only edit your own keyboard layouts.');
         }
 
-        return view('keyboards.create', compact('keyboard'));
+        $languageTags = \App\Models\LanguageTag::orderBy('name')->get();
+        return view('keyboards.create', compact('keyboard', 'languageTags'));
     }
 
     /**
@@ -127,7 +140,11 @@ class KeyboardController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'layout' => 'required|array',
-            'layout.*.*' => 'required|string',
+            // *.* means every element in the array and every sub-element
+            // so all the keys in the layout need to be single characters
+            'layout.*.*' => 'required|string|size:1',
+            'language_tags' => 'nullable|array',
+            'language_tags.*' => 'exists:language_tags,id',
         ]);
 
         // Check for duplicate characters in the layout
@@ -140,6 +157,13 @@ class KeyboardController extends Controller
         }
 
         $keyboard->update($validated);
+
+        // Sync language tags
+        if (isset($validated['language_tags'])) {
+            $keyboard->languageTags()->sync($validated['language_tags']);
+        } else {
+            $keyboard->languageTags()->sync([]);
+        }
 
         return redirect()->route('keyboards.show', $keyboard)
             ->with('status', 'Keyboard updated successfully.');
@@ -182,6 +206,8 @@ class KeyboardController extends Controller
             }
         }
 
+        // Count occurrences of each key and filter to get duplicates
+        // source: https://gist.github.com/MontealegreLuis/5118639
         return array_filter(array_count_values($allKeys), function ($count) {
             return $count > 1;
         });

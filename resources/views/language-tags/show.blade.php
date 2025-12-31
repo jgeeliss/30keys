@@ -14,7 +14,7 @@
             <div class="card">
                 <h3><a href="{{ route('keyboards.show', $keyboard) }}">{{ $keyboard->name }}</a></h3>
                 <p class="text-small">
-                    by 
+                    by
                     @if($keyboard->user)
                         <a href="{{ route('users.show', $keyboard->user) }}">{{ $keyboard->user->user_alias }}</a>
                     @else
