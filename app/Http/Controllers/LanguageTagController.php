@@ -13,7 +13,7 @@ class LanguageTagController extends Controller
      */
     public function index()
     {
-        $languageTags = LanguageTag::withCount('keyboards')->orderBy('name')->get();
+        $languageTags = LanguageTag::orderBy('name')->get();
         return view('language-tags.index', compact('languageTags'));
     }
 

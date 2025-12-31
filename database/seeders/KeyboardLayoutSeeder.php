@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Comment;
 use App\Models\Keyboard;
+use App\Models\LanguageTag;
 use App\Models\Rating;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -16,6 +17,13 @@ class KeyboardLayoutSeeder extends Seeder
     {
         // Copy profile pictures from seeders to public storage
         $this->copyProfilePicturesFromSeederToPublicStorage();
+
+        // Get language tags
+        $english = LanguageTag::where('name', 'English')->first();
+        $dutch = LanguageTag::where('name', 'Dutch')->first();
+        $french = LanguageTag::where('name', 'French')->first();
+        $spanish = LanguageTag::where('name', 'Spanish')->first();
+
         // Dutchman Layout
         $dutchmanUser = User::create([
             'user_alias' => 'jesse_geelissen',
@@ -37,6 +45,7 @@ class KeyboardLayoutSeeder extends Seeder
             'user_id' => $dutchmanUser->id,
             'created_at' => now()->subDays(rand(1, 120)),
         ]);
+        $dutchmanKeyboard->languageTags()->attach([$english->id, $dutch->id]);
 
         $stonerKeyboard = Keyboard::create([
             'name' => 'Stoner',
@@ -49,6 +58,7 @@ class KeyboardLayoutSeeder extends Seeder
             'user_id' => $dutchmanUser->id,
             'created_at' => now()->subDays(rand(120, 240)),
         ]);
+        $stonerKeyboard->languageTags()->attach([$english->id, $dutch->id]);
 
         // QWERTY Layout
         $qwertyUser = User::create([
@@ -71,6 +81,7 @@ class KeyboardLayoutSeeder extends Seeder
             'user_id' => $qwertyUser->id,
             'created_at' => now()->subDays(rand(1, 120)),
         ]);
+        $qwertyKeyboard->languageTags()->attach([$english->id]);
 
         // Dvorak Simplified Keyboard
         $dvorakUser = User::create([
@@ -93,6 +104,7 @@ class KeyboardLayoutSeeder extends Seeder
             'user_id' => $dvorakUser->id,
             'created_at' => now()->subDays(rand(1, 120)),
         ]);
+        $dvorakKeyboard->languageTags()->attach([$english->id, $spanish->id]);
 
         // Colemak
         $colemakUser = User::create([
@@ -115,6 +127,7 @@ class KeyboardLayoutSeeder extends Seeder
             'user_id' => $colemakUser->id,
             'created_at' => now()->subDays(rand(1, 120)),
         ]);
+        $colemakKeyboard->languageTags()->attach([$english->id, $spanish->id]);
 
         // Workman
         $workmanUser = User::create([
@@ -137,6 +150,7 @@ class KeyboardLayoutSeeder extends Seeder
             'user_id' => $workmanUser->id,
             'created_at' => now()->subDays(rand(1, 120)),
         ]);
+        $workmanKeyboard->languageTags()->attach([$english->id]);
 
         // Norman
         $normanUser = User::create([
@@ -159,6 +173,7 @@ class KeyboardLayoutSeeder extends Seeder
             'user_id' => $normanUser->id,
             'created_at' => now()->subDays(rand(1, 120)),
         ]);
+        $normanKeyboard->languageTags()->attach([$french->id]);
 
         // Create some random raters
         $raters = [];
@@ -235,6 +250,13 @@ class KeyboardLayoutSeeder extends Seeder
                 'rating' => rand(2, 4),
             ]);
         }
+
+        // Dutchman creator rates all layouts
+        Rating::create(['keyboard_id' => $qwertyKeyboard->id, 'user_id' => $dutchmanUser->id, 'rating' => 2]);
+        Rating::create(['keyboard_id' => $dvorakKeyboard->id, 'user_id' => $dutchmanUser->id, 'rating' => 5]);
+        Rating::create(['keyboard_id' => $colemakKeyboard->id, 'user_id' => $dutchmanUser->id, 'rating' => 5]);
+        Rating::create(['keyboard_id' => $workmanKeyboard->id, 'user_id' => $dutchmanUser->id, 'rating' => 4]);
+        Rating::create(['keyboard_id' => $normanKeyboard->id, 'user_id' => $dutchmanUser->id, 'rating' => 4]);
 
         // Create comments on keyboards
 

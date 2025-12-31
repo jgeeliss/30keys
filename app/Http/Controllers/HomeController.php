@@ -13,7 +13,7 @@ class HomeController extends Controller
         // Get keyboards with ratings and calculate average
         $topKeyboards = Keyboard::with('ratings')
             ->get()
-            // note:fn() is used to create an arrow function
+            // note: fn() is used to create an arrow function
             ->filter(fn($keyboard) => $keyboard->totalRatings() > 0)
             ->sortByDesc(fn($keyboard) => $keyboard->averageRating())
             ->take(3);

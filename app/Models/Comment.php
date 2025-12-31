@@ -17,11 +17,13 @@ class Comment extends Model
 
     public function user()
     {
+        // relation many-to-one: many comments belong to one user
         return $this->belongsTo(User::class);
     }
 
     public function keyboard()
     {
+        // relation many-to-one: many comments belong to one keyboard
         return $this->belongsTo(Keyboard::class);
     }
 }

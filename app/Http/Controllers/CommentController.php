@@ -23,6 +23,7 @@ class CommentController extends Controller
             ->latest()
             ->get();
 
+        // compact() creates an array containing variables and their values
         return view('keyboards.my-comments', compact('comments'));
     }
 

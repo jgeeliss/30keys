@@ -1,5 +1,8 @@
 import './bootstrap';
 
+// app.js is the main JavaScript entry point for the application
+// here you can include other JavaScript libraries or your own scripts
+
 // Highlight the link based on the current page nav link
 document.addEventListener('DOMContentLoaded', () => {
     const allHeaderNavLinks = document.querySelectorAll('header nav a');

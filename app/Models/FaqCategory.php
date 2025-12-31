@@ -14,6 +14,7 @@ class FaqCategory extends Model
 
     public function faqs()
     {
+        // relation is one-to-many: one category has many FAQs
         return $this->hasMany(Faq::class);
     }
 }

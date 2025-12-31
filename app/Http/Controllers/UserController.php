@@ -63,7 +63,7 @@ class UserController extends Controller
         }
 
         $request->validate([
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email|unique:users,email', // checks email against users table
             'user_alias' => 'required|string|min:3|max:15|unique:users,user_alias',
             'password' => 'required|confirmed|min:6',
             'birthday' => 'nullable|date|before:today',
@@ -74,6 +74,7 @@ class UserController extends Controller
 
         $profilePicturePath = null;
         if ($request->hasFile('profile_picture')) {
+            // store the uploaded profile picture in the "public/profile_pictures" directory
             $profilePicturePath = $request->file('profile_picture')->store('profile_pictures', 'public');
         }
 
@@ -83,7 +84,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
             'birthday' => $request->birthday,
             'about_me' => $request->about_me,
-            'profile_picture' => $profilePicturePath,
+            'profile_picture' => $profilePicturePath, // get the stored path from above
             'is_admin' => $request->has('is_admin'),
         ]);
 
@@ -146,6 +147,8 @@ class UserController extends Controller
         $user = auth()->user();
 
         $request->validate([
+            // validation adds user ID to check if the user_alias is unique among all users except the current user
+            // otherwise the validation would always fail because the user's current alias already exists in the database!
             'email' => 'required|email|unique:users,email,' . $user->id,
             'user_alias' => 'required|string|min:3|max:15|unique:users,user_alias,' . $user->id,
             'password' => 'nullable|confirmed|min:6',

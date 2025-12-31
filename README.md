@@ -33,18 +33,26 @@ After cloning this repository, follow these steps to get started:
    ```bash
    cp .env.example .env
    ```
+   and configure your `.env` file as needed:
+   - set up database connection (SQLite by default)
+   - Configure mail settings for password resets and contact form
 
-3. **Build assets**
+3. ** Generate application key**
+   ```bash
+   php artisan key:generate
+   ```
+
+4. **Build assets**
    ```bash
    npm run build
    ```
 
-4. **Create database**
+5. **Create database**
    ```bash
    touch database/database.sqlite
    ```
 
-5. **Seed the database** (optional)
+6. **Seed the database** (optional)
    ```bash
    php artisan migrate:fresh --seed
    ```
@@ -90,3 +98,4 @@ Throughout the development of this project, the following resources were used:
 - [Kinsta - Laravel Authentication](https://kinsta.com/blog/laravel-authentication/) - Authentication implementation
 - [Laracasts - Confirm Delete Alert](https://laracasts.com/discuss/channels/laravel/laravel-confirm-delete-in-an-alert-in-my-view) - Delete confirmation pattern
 - [Intelephense Issue #3125](https://github.com/bmewburn/vscode-intelephense/issues/3125) - IDE helper configuration
+- [Counting duplicate values in an array](https://gist.github.com/MontealegreLuis/5118639) - Counting duplicate values in an array

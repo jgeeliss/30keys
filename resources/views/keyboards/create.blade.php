@@ -53,9 +53,9 @@
             @endphp
             @foreach($languageTags as $tag)
                 <label style="display: inline-block; margin-right: 1rem;">
-                    <input 
-                        type="checkbox" 
-                        name="language_tags[]" 
+                    <input
+                        type="checkbox"
+                        name="language_tags[]"
                         value="{{ $tag->id }}"
                         {{ in_array($tag->id, $selectedTags) ? 'checked' : '' }}>
                     {{ $tag->name }}

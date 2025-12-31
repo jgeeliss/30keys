@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('keyboard_id')->constrained()->onDelete('cascade');
             $table->foreignId('language_tag_id')->constrained()->onDelete('cascade');
             $table->timestamps();
-            
+
             // Prevent duplicate tag assignments
             $table->unique(['keyboard_id', 'language_tag_id']);
         });

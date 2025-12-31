@@ -21,6 +21,8 @@ class ForgotPasswordLinkController extends Controller
         return view('users.forgot-password');
     }
 
+    // note: this method handles the submission of the forgot password form.
+    // It validates the email, sends a password reset link, and provides feedback to the user.
     public function sendResetLinkEmail(Request $request)
     {
         $request->validate([
@@ -33,6 +35,8 @@ class ForgotPasswordLinkController extends Controller
             $request->only('email')
         );
 
+        // note: depending on whether the reset link was sent successfully or not,
+        // the user is redirected back with a status message.
         return $status === Password::RESET_LINK_SENT
             ? back()->with('status', __($status))
             : back()->withInput($request->only('email'))->withErrors(['email' => __($status)]);
@@ -43,6 +47,8 @@ class ForgotPasswordLinkController extends Controller
         return view('users.reset-password', ['token' => $token, 'email' => $request->email]);
     }
 
+    // note: this method processes the password reset form submission.
+    // It validates the input, resets the user's password, and provides feedback.
     public function reset(Request $request)
     {
         $request->validate([
@@ -52,8 +58,11 @@ class ForgotPasswordLinkController extends Controller
         ]);
 
         $status = Password::reset(
+            // only() retrieves a subset of the input data from the request. This ensures that only 
+            // the necessary fields are passed to the reset method which is safer.
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function ($user) use ($request) {
+                // forceFill() is needed because the password field is not fillable by default.
                 $user->forceFill([
                     'password' => Hash::make($request->password),
                     'remember_token' => Str::random(60)

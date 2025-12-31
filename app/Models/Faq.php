@@ -14,6 +14,7 @@ class Faq extends Model
 
     public function category()
     {
+        // relation many-to-one: many FAQs belong to one category
         return $this->belongsTo(FaqCategory::class, 'faq_category_id');
     }
 }

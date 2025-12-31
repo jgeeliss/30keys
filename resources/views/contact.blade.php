@@ -10,7 +10,7 @@
 
         <div>
             <label for="name">
-                Name <span>*</span>
+                Name *
             </label>
             <input
                 type="text"
@@ -23,7 +23,7 @@
 
         <div>
             <label for="email">
-                Email <span>*</span>
+                Email *
             </label>
             <input
                 type="email"
@@ -36,7 +36,7 @@
 
         <div>
             <label for="message">
-                Message <span>*</span>
+                Message *
             </label>
             <textarea
                 name="message"

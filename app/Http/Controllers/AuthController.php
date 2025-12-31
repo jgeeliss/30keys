@@ -33,6 +33,7 @@ class AuthController extends Controller
         }
 
         if (User::where('user_alias', $request->get('user_alias'))->first()) {
+            // note: ->withInput() ensures that all the data just submitted remains available on the next page load
             return redirect()->back()->withErrors(['duplicate' => 'User alias "'.$request->get('user_alias').'" is already taken!'])->withInput();
         }
 
@@ -74,6 +75,8 @@ class AuthController extends Controller
         // When set to true, Laravel will keep the user authenticated indefinitely (or until they manually log out)
         // source: https://kinsta.com/blog/laravel-authentication/
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->filled('remember'))) {
+            // By regenerating the session ID immediately after successful authentication, 
+            // you invalidate any session ID that might have been compromised before login:
             $request->session()->regenerate();
 
             return redirect()->route('home')->with('status', 'Welcome back, '.Auth::user()->user_alias.'!');
@@ -85,8 +88,6 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
-        $request->session()->flash('status', 'You are no longer logged in!');
-
         return redirect()->route('home')->with('status', 'You have been logged out successfully.');
     }
 }
