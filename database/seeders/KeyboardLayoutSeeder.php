@@ -23,6 +23,16 @@ class KeyboardLayoutSeeder extends Seeder
         $dutch = LanguageTag::where('name', 'Dutch')->first();
         $french = LanguageTag::where('name', 'French')->first();
         $spanish = LanguageTag::where('name', 'Spanish')->first();
+        $german = LanguageTag::where('name', 'German')->first();
+        $danish = LanguageTag::where('name', 'Danish')->first();
+        $finnish = LanguageTag::where('name', 'Finnish')->first();
+        $norwegian = LanguageTag::where('name', 'Norwegian')->first();
+        $swedish = LanguageTag::where('name', 'Swedish')->first();
+        $czech = LanguageTag::where('name', 'Czech')->first();
+        $slovak = LanguageTag::where('name', 'Slovak')->first();
+        $polish = LanguageTag::where('name', 'Polish')->first();
+        $italian = LanguageTag::where('name', 'Italian')->first();
+        $portuguese = LanguageTag::where('name', 'Portuguese')->first();
 
         // Dutchman Layout
         $dutchmanUser = User::create([
@@ -81,7 +91,161 @@ class KeyboardLayoutSeeder extends Seeder
             'user_id' => $qwertyUser->id,
             'created_at' => now()->subDays(rand(1, 120)),
         ]);
-        $qwertyKeyboard->languageTags()->attach([$english->id]);
+        $qwertyKeyboard->languageTags()->attach([$english->id, $italian->id]);
+
+        // QWERTZ Layout (German)
+        $qwertzUser = User::create([
+            'user_alias' => 'some_german_dude',
+            'email' => 'german.dude@qwertz.de',
+            'password' => Hash::make('password'),
+            'email_verified_at' => now(),
+            'about_me' => 'German keyboard layout lover. QWERTZ is the standard layout in Germany, Austria, and Switzerland, adapted from QWERTY to better suit German language typing needs.',
+        ]);
+
+        $qwertzKeyboard = Keyboard::create([
+            'name' => 'QWERTZ',
+            'description' => 'The standard keyboard layout in Germany, Austria, and Switzerland. Adapted from QWERTY with Z and Y positions swapped, and optimized for German language characters and umlauts.',
+            'layout' => [
+                ['Q', 'W', 'E', 'R', 'T', 'Z', 'U', 'I', 'O', 'P'],
+                ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Ö'],
+                ['Y', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '-'],
+            ],
+            'user_id' => $qwertzUser->id,
+            'created_at' => now()->subDays(rand(1, 120)),
+        ]);
+        $qwertzKeyboard->languageTags()->attach([$german->id]);
+
+        // Spanish QWERTY Layout
+        $spanishQwertyUser = User::create([
+            'user_alias' => 'some_spanish_dude',
+            'email' => 'spanish.dude@qwerty.es',
+            'password' => Hash::make('password'),
+            'email_verified_at' => now(),
+            'about_me' => 'Spanish keyboard layout enthusiast. Spanish QWERTY is adapted to include Spanish-specific characters like Ñ and easy access to accented vowels.',
+        ]);
+
+        $spanishQwertyKeyboard = Keyboard::create([
+            'name' => 'Spanish QWERTY',
+            'description' => 'The standard keyboard layout in Spain and Latin America. Based on QWERTY with Ñ added and optimized for Spanish language typing with easy access to accented characters.',
+            'layout' => [
+                ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
+                ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Ñ'],
+                ['Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '-'],
+            ],
+            'user_id' => $spanishQwertyUser->id,
+            'created_at' => now()->subDays(rand(1, 120)),
+        ]);
+        $spanishQwertyKeyboard->languageTags()->attach([$spanish->id]);
+
+        // Nordic QWERTY Layout
+        $nordicQwertyUser = User::create([
+            'user_alias' => 'some_nordic_dude',
+            'email' => 'nordic.dude@qwerty.se',
+            'password' => Hash::make('password'),
+            'email_verified_at' => now(),
+            'about_me' => 'Nordic keyboard layout advocate from Sweden. Nordic QWERTY is the standard layout across Scandinavia, optimized for Danish, Finnish, Norwegian, and Swedish.',
+        ]);
+
+        $nordicQwertyKeyboard = Keyboard::create([
+            'name' => 'Nordic QWERTY',
+            'description' => 'The standard keyboard layout in Denmark, Finland, Norway, and Sweden. Features Å, Ä, and Ö characters essential for Nordic languages.',
+            'layout' => [
+                ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
+                ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Ö'],
+                ['Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', 'Å'],
+            ],
+            'user_id' => $nordicQwertyUser->id,
+            'created_at' => now()->subDays(rand(1, 120)),
+        ]);
+        $nordicQwertyKeyboard->languageTags()->attach([$danish->id, $finnish->id, $norwegian->id, $swedish->id]);
+
+        // Czech & Slovak QWERTZ Layout
+        $czechSlovakQwertzUser = User::create([
+            'user_alias' => 'some_czech_slovak_dude',
+            'email' => 'cs.dude@qwertz.cz',
+            'password' => Hash::make('password'),
+            'email_verified_at' => now(),
+            'about_me' => 'Keyboard layout enthusiast from Czech Republic. QWERTZ is the standard layout in Czech Republic and Slovakia, adapted for Czech and Slovak special characters.',
+        ]);
+
+        $czechSlovakQwertzKeyboard = Keyboard::create([
+            'name' => 'Czech & Slovak QWERTZ',
+            'description' => 'The standard keyboard layout in Czech Republic and Slovakia. Based on QWERTZ with special characters optimized for Czech and Slovak typing.',
+            'layout' => [
+                ['Q', 'W', 'E', 'R', 'T', 'Z', 'U', 'I', 'O', 'P'],
+                ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Ů'],
+                ['Y', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '-'],
+            ],
+            'user_id' => $czechSlovakQwertzUser->id,
+            'created_at' => now()->subDays(rand(1, 120)),
+        ]);
+        $czechSlovakQwertzKeyboard->languageTags()->attach([$czech->id, $slovak->id]);
+
+        // Polish QWERTY Layout
+        $polishQwertyUser = User::create([
+            'user_alias' => 'some_polish_dude',
+            'email' => 'polish.dude@qwerty.pl',
+            'password' => Hash::make('password'),
+            'email_verified_at' => now(),
+            'about_me' => 'Polish keyboard layout enthusiast. Polish QWERTY (also called Polish Programmers layout) is optimized for typing Polish with easy access to characters like Ą, Ć, Ę, Ł, Ń, Ó, Ś, Ź, Ż.',
+        ]);
+
+        $polishQwertyKeyboard = Keyboard::create([
+            'name' => 'Polish QWERTY',
+            'description' => 'The standard keyboard layout in Poland. Based on QWERTY with easy access to Polish diacritics like Ł.',
+            'layout' => [
+                ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
+                ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Ł'],
+                ['Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '-'],
+            ],
+            'user_id' => $polishQwertyUser->id,
+            'created_at' => now()->subDays(rand(1, 120)),
+        ]);
+        $polishQwertyKeyboard->languageTags()->attach([$polish->id]);
+
+        // French AZERTY Layout
+        $frenchAzertyUser = User::create([
+            'user_alias' => 'some_french_dude',
+            'email' => 'french.dude@azerty.fr',
+            'password' => Hash::make('password'),
+            'email_verified_at' => now(),
+            'about_me' => 'French keyboard layout enthusiast. AZERTY is the standard layout in France and Belgium, specifically designed for typing French with easy access to accented characters.',
+        ]);
+
+        $frenchAzertyKeyboard = Keyboard::create([
+            'name' => 'French AZERTY',
+            'description' => 'The standard keyboard layout in France and Belgium. Completely different from QWERTY with A and Q swapped, Z and W swapped, optimized for French accented characters like é, è, à, ç.',
+            'layout' => [
+                ['A', 'Z', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
+                ['Q', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M'],
+                ['W', 'X', 'C', 'V', 'B', 'N', ',', ';', ':', '!'],
+            ],
+            'user_id' => $frenchAzertyUser->id,
+            'created_at' => now()->subDays(rand(1, 120)),
+        ]);
+        $frenchAzertyKeyboard->languageTags()->attach([$french->id]);
+
+        // Portuguese QWERTY Layout
+        $portugueseQwertyUser = User::create([
+            'user_alias' => 'some_portuguese_dude',
+            'email' => 'portuguese.dude@qwerty.pt',
+            'password' => Hash::make('password'),
+            'email_verified_at' => now(),
+            'about_me' => 'Portuguese keyboard layout enthusiast from Portugal. Portuguese QWERTY is adapted for typing Portuguese with easy access to characters like Ç, and accented vowels.',
+        ]);
+
+        $portugueseQwertyKeyboard = Keyboard::create([
+            'name' => 'Portuguese QWERTY',
+            'description' => 'The standard keyboard layout in Portugal and Brazil. Based on QWERTY with special characters for Portuguese including Ç and accented vowels.',
+            'layout' => [
+                ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
+                ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Ç'],
+                ['Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '-'],
+            ],
+            'user_id' => $portugueseQwertyUser->id,
+            'created_at' => now()->subDays(rand(1, 120)),
+        ]);
+        $portugueseQwertyKeyboard->languageTags()->attach([$portuguese->id]);
 
         // Dvorak Simplified Keyboard
         $dvorakUser = User::create([
@@ -215,6 +379,69 @@ class KeyboardLayoutSeeder extends Seeder
             ]);
         }
 
+        // QWERTZ - average ratings
+        foreach (array_rand($raters, 6) as $randomRater) {
+            Rating::create([
+                'keyboard_id' => $qwertzKeyboard->id,
+                'user_id' => $raters[$randomRater]->id,
+                'rating' => rand(3, 4),
+            ]);
+        }
+
+        // Spanish QWERTY - average ratings
+        foreach (array_rand($raters, 6) as $randomRater) {
+            Rating::create([
+                'keyboard_id' => $spanishQwertyKeyboard->id,
+                'user_id' => $raters[$randomRater]->id,
+                'rating' => rand(3, 4),
+            ]);
+        }
+
+        // Nordic QWERTY - average ratings
+        foreach (array_rand($raters, 6) as $randomRater) {
+            Rating::create([
+                'keyboard_id' => $nordicQwertyKeyboard->id,
+                'user_id' => $raters[$randomRater]->id,
+                'rating' => rand(3, 4),
+            ]);
+        }
+
+        // Czech & Slovak QWERTZ - average ratings
+        foreach (array_rand($raters, 5) as $randomRater) {
+            Rating::create([
+                'keyboard_id' => $czechSlovakQwertzKeyboard->id,
+                'user_id' => $raters[$randomRater]->id,
+                'rating' => rand(3, 4),
+            ]);
+        }
+
+        // Polish QWERTY - average ratings
+        foreach (array_rand($raters, 5) as $randomRater) {
+            Rating::create([
+                'keyboard_id' => $polishQwertyKeyboard->id,
+                'user_id' => $raters[$randomRater]->id,
+                'rating' => rand(3, 4),
+            ]);
+        }
+
+        // French AZERTY - average ratings
+        foreach (array_rand($raters, 6) as $randomRater) {
+            Rating::create([
+                'keyboard_id' => $frenchAzertyKeyboard->id,
+                'user_id' => $raters[$randomRater]->id,
+                'rating' => rand(3, 4),
+            ]);
+        }
+
+        // Portuguese QWERTY - average ratings
+        foreach (array_rand($raters, 5) as $randomRater) {
+            Rating::create([
+                'keyboard_id' => $portugueseQwertyKeyboard->id,
+                'user_id' => $raters[$randomRater]->id,
+                'rating' => rand(3, 4),
+            ]);
+        }
+
         // Dvorak - some good, some bad
         foreach (array_rand($raters, 6) as $randomRater) {
             Rating::create([
@@ -253,6 +480,13 @@ class KeyboardLayoutSeeder extends Seeder
 
         // Dutchman creator rates all layouts
         Rating::create(['keyboard_id' => $qwertyKeyboard->id, 'user_id' => $dutchmanUser->id, 'rating' => 2]);
+        Rating::create(['keyboard_id' => $qwertzKeyboard->id, 'user_id' => $dutchmanUser->id, 'rating' => 2]);
+        Rating::create(['keyboard_id' => $spanishQwertyKeyboard->id, 'user_id' => $dutchmanUser->id, 'rating' => 3]);
+        Rating::create(['keyboard_id' => $nordicQwertyKeyboard->id, 'user_id' => $dutchmanUser->id, 'rating' => 3]);
+        Rating::create(['keyboard_id' => $czechSlovakQwertzKeyboard->id, 'user_id' => $dutchmanUser->id, 'rating' => 3]);
+        Rating::create(['keyboard_id' => $polishQwertyKeyboard->id, 'user_id' => $dutchmanUser->id, 'rating' => 3]);
+        Rating::create(['keyboard_id' => $frenchAzertyKeyboard->id, 'user_id' => $dutchmanUser->id, 'rating' => 2]);
+        Rating::create(['keyboard_id' => $portugueseQwertyKeyboard->id, 'user_id' => $dutchmanUser->id, 'rating' => 3]);
         Rating::create(['keyboard_id' => $dvorakKeyboard->id, 'user_id' => $dutchmanUser->id, 'rating' => 5]);
         Rating::create(['keyboard_id' => $colemakKeyboard->id, 'user_id' => $dutchmanUser->id, 'rating' => 5]);
         Rating::create(['keyboard_id' => $workmanKeyboard->id, 'user_id' => $dutchmanUser->id, 'rating' => 4]);
@@ -351,6 +585,202 @@ class KeyboardLayoutSeeder extends Seeder
             'comment' => 'Works fine for casual typing. Don\'t see a reason to change after 20 years.',
             'created_at' => $date7,
             'updated_at' => $date7,
+        ]);
+
+        // QWERTZ comments
+        $date27 = now()->subDays(75);
+        Comment::create([
+            'keyboard_id' => $qwertzKeyboard->id,
+            'user_id' => $qwertzUser->id,
+            'comment' => 'The standard layout for German speakers. The Z and Y swap makes much more sense for typing German words!',
+            'created_at' => $date27,
+            'updated_at' => $date27,
+        ]);
+
+        $date28 = now()->subDays(40);
+        Comment::create([
+            'keyboard_id' => $qwertzKeyboard->id,
+            'user_id' => $raters[2]->id,
+            'comment' => 'As a German native, I can\'t imagine typing on anything else. The umlauts are perfectly positioned.',
+            'created_at' => $date28,
+            'updated_at' => $date28,
+        ]);
+
+        $date29 = now()->subDays(12);
+        Comment::create([
+            'keyboard_id' => $qwertzKeyboard->id,
+            'user_id' => $raters[4]->id,
+            'comment' => 'Switching between QWERTY and QWERTZ is confusing at first, but QWERTZ is definitely better for German.',
+            'created_at' => $date29,
+            'updated_at' => $date29,
+        ]);
+
+        // Spanish QWERTY comments
+        $date30 = now()->subDays(68);
+        Comment::create([
+            'keyboard_id' => $spanishQwertyKeyboard->id,
+            'user_id' => $spanishQwertyUser->id,
+            'comment' => 'The standard layout for Spanish speakers. Having Ñ and easy access to accented vowels makes typing in Spanish much more natural.',
+            'created_at' => $date30,
+            'updated_at' => $date30,
+        ]);
+
+        $date31 = now()->subDays(36);
+        Comment::create([
+            'keyboard_id' => $spanishQwertyKeyboard->id,
+            'user_id' => $raters[1]->id,
+            'comment' => 'Perfect for Spanish! The Ñ key placement is so convenient. Can\'t imagine using regular QWERTY for Spanish writing.',
+            'created_at' => $date31,
+            'updated_at' => $date31,
+        ]);
+
+        $date32 = now()->subDays(18);
+        Comment::create([
+            'keyboard_id' => $spanishQwertyKeyboard->id,
+            'user_id' => $raters[7]->id,
+            'comment' => 'Great layout for Latin American Spanish too. Makes writing emails and documents so much faster.',
+            'created_at' => $date32,
+            'updated_at' => $date32,
+        ]);
+
+        // Nordic QWERTY comments
+        $date33 = now()->subDays(62);
+        Comment::create([
+            'keyboard_id' => $nordicQwertyKeyboard->id,
+            'user_id' => $nordicQwertyUser->id,
+            'comment' => 'The standard layout across all Nordic countries. Having Å, Ä, and Ö readily accessible is essential for typing in Swedish, Norwegian, Finnish, and Danish!',
+            'created_at' => $date33,
+            'updated_at' => $date33,
+        ]);
+
+        $date34 = now()->subDays(33);
+        Comment::create([
+            'keyboard_id' => $nordicQwertyKeyboard->id,
+            'user_id' => $raters[3]->id,
+            'comment' => 'As a Swede, this layout is perfect. The Ö, Ä, Å placement feels natural and efficient.',
+            'created_at' => $date34,
+            'updated_at' => $date34,
+        ]);
+
+        $date35 = now()->subDays(14);
+        Comment::create([
+            'keyboard_id' => $nordicQwertyKeyboard->id,
+            'user_id' => $raters[6]->id,
+            'comment' => 'Works great for all Scandinavian languages. Switching between Swedish and Norwegian is seamless.',
+            'created_at' => $date35,
+            'updated_at' => $date35,
+        ]);
+
+        // Czech & Slovak QWERTZ comments
+        $date36 = now()->subDays(58);
+        Comment::create([
+            'keyboard_id' => $czechSlovakQwertzKeyboard->id,
+            'user_id' => $czechSlovakQwertzUser->id,
+            'comment' => 'Perfect for Czech and Slovak! The QWERTZ base with easy access to Č, Ř, Š, Ž, and other diacritics makes typing natural.',
+            'created_at' => $date36,
+            'updated_at' => $date36,
+        ]);
+
+        $date37 = now()->subDays(29);
+        Comment::create([
+            'keyboard_id' => $czechSlovakQwertzKeyboard->id,
+            'user_id' => $raters[5]->id,
+            'comment' => 'Essential for Czech typing. Couldn\'t imagine using a standard QWERTY without proper diacritic support.',
+            'created_at' => $date37,
+            'updated_at' => $date37,
+        ]);
+
+        $date38 = now()->subDays(11);
+        Comment::create([
+            'keyboard_id' => $czechSlovakQwertzKeyboard->id,
+            'user_id' => $raters[8]->id,
+            'comment' => 'Great for both Czech and Slovak languages. The layout handles all the special characters we need.',
+            'created_at' => $date38,
+            'updated_at' => $date38,
+        ]);
+
+        // Polish QWERTY comments
+        $date39 = now()->subDays(54);
+        Comment::create([
+            'keyboard_id' => $polishQwertyKeyboard->id,
+            'user_id' => $polishQwertyUser->id,
+            'comment' => 'The Polish Programmers layout is perfect! Easy access to all Polish diacritics like Ą, Ć, Ę, Ł, Ń, Ó, Ś, Ź, Ż while maintaining QWERTY familiarity.',
+            'created_at' => $date39,
+            'updated_at' => $date39,
+        ]);
+
+        $date40 = now()->subDays(27);
+        Comment::create([
+            'keyboard_id' => $polishQwertyKeyboard->id,
+            'user_id' => $raters[4]->id,
+            'comment' => 'As a Polish programmer, this layout is essential. All the special Polish characters are easily accessible.',
+            'created_at' => $date40,
+            'updated_at' => $date40,
+        ]);
+
+        $date41 = now()->subDays(9);
+        Comment::create([
+            'keyboard_id' => $polishQwertyKeyboard->id,
+            'user_id' => $raters[9]->id,
+            'comment' => 'Much better than the older Polish typewriter layout. Combines modern QWERTY with proper Polish character support.',
+            'created_at' => $date41,
+            'updated_at' => $date41,
+        ]);
+
+        // French AZERTY comments
+        $date42 = now()->subDays(71);
+        Comment::create([
+            'keyboard_id' => $frenchAzertyKeyboard->id,
+            'user_id' => $frenchAzertyUser->id,
+            'comment' => 'The standard French layout. AZERTY is completely different from QWERTY but perfectly optimized for French with accents like é, è, à, ç readily available.',
+            'created_at' => $date42,
+            'updated_at' => $date42,
+        ]);
+
+        $date43 = now()->subDays(46);
+        Comment::create([
+            'keyboard_id' => $frenchAzertyKeyboard->id,
+            'user_id' => $raters[2]->id,
+            'comment' => 'As a French native, I can\'t imagine using anything else. The accented characters are exactly where they should be.',
+            'created_at' => $date43,
+            'updated_at' => $date43,
+        ]);
+
+        $date44 = now()->subDays(22);
+        Comment::create([
+            'keyboard_id' => $frenchAzertyKeyboard->id,
+            'user_id' => $raters[5]->id,
+            'comment' => 'Switching between AZERTY and QWERTY is a nightmare, but AZERTY is essential for proper French typing.',
+            'created_at' => $date44,
+            'updated_at' => $date44,
+        ]);
+
+        // Portuguese QWERTY comments
+        $date45 = now()->subDays(66);
+        Comment::create([
+            'keyboard_id' => $portugueseQwertyKeyboard->id,
+            'user_id' => $portugueseQwertyUser->id,
+            'comment' => 'Perfect for Portuguese! Easy access to Ç and all the accented vowels we need. Works great for both European and Brazilian Portuguese.',
+            'created_at' => $date45,
+            'updated_at' => $date45,
+        ]);
+
+        $date46 = now()->subDays(31);
+        Comment::create([
+            'keyboard_id' => $portugueseQwertyKeyboard->id,
+            'user_id' => $raters[7]->id,
+            'comment' => 'As a Brazilian, this layout is essential. The Ç and tilde characters are exactly where they should be.',
+            'created_at' => $date46,
+            'updated_at' => $date46,
+        ]);
+
+        $date47 = now()->subDays(16);
+        Comment::create([
+            'keyboard_id' => $portugueseQwertyKeyboard->id,
+            'user_id' => $raters[1]->id,
+            'comment' => 'Great layout for Portuguese speakers. Much better than trying to type Portuguese on a standard US QWERTY.',
+            'created_at' => $date47,
+            'updated_at' => $date47,
         ]);
 
         // Dvorak comments

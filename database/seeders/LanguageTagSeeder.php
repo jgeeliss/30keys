@@ -20,9 +20,13 @@ class LanguageTagSeeder extends Seeder
             ['name' => 'Italian'],
             ['name' => 'Portuguese'],
             ['name' => 'Dutch'],
-            ['name' => 'Japanese'],
-            ['name' => 'Chinese'],
-            ['name' => 'Korean'],
+            ['name' => 'Danish'],
+            ['name' => 'Finnish'],
+            ['name' => 'Norwegian'],
+            ['name' => 'Swedish'],
+            ['name' => 'Czech'],
+            ['name' => 'Slovak'],
+            ['name' => 'Polish'],
         ];
 
         foreach ($languageTags as $tag) {

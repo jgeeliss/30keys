@@ -52,7 +52,7 @@ Naast de functionele requirements zijn er ook enkele technische standaarden die 
     Models
         Gebruik Eloquent models per entiteit OK
         Leg de nodige relaties
-            Minstens één one-to-many OK (user-to-layout)
+            Minstens één one-to-many OK (languageTag-to-layout relation)
             Minstens één many-to-many OK (user-ratings-layouts)
     Database
         Ik zal "php artisan migrate:fresh --seed" uitvoeren op elk project en mijn eigen .env-file gebruiken om met de database te connecten

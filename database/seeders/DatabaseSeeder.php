@@ -15,14 +15,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'user_alias' => 'test_user',
-            'email' => 'test@example.com',
-            'about_me' => 'Just a test user exploring different keyboard layouts and sharing my typing journey!',
-        ]);
-
         // Seed Language Tags first (needed by KeyboardLayoutSeeder)
         $this->call(LanguageTagSeeder::class);
         // Seed some famous keyboard layouts with their creators
