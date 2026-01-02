@@ -7,9 +7,10 @@
     $totalRatings = $keyboard->totalRatings();
     $userRating = auth()->check() ? $keyboard->ratings()->where('user_id', auth()->id())->first() : null;
     $isOwner = auth()->check() && $keyboard->user_id === auth()->id();
+    $isAdmin = auth()->check() && auth()->user()->isAdmin();
 @endphp
 
-@if(auth()->check() && !$isOwner)
+@if(auth()->check() && !$isOwner && !$isAdmin)
 <div class="card">
     <h3>Rate this layout</h3>
     @if($userRating)
@@ -29,7 +30,9 @@
     </form>
 </div>
 @elseif($isOwner)
-<!-- you cannot rate your own layout -->
+<p>You cannot rate your own layout.</p>
+@elseif($isAdmin)
+<p>Admins cannot rate layouts.</p>
 @else
 <p><a href="{{ route('login') }}">Login</a> to rate this layout.</p>
 @endif
