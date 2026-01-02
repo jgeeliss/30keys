@@ -48,11 +48,9 @@ class Keyboard extends Model
         return $this->hasMany(Comment::class);
     }
 
-    /**
-     * Many-to-many relationship: a keyboard can have many language tags
-     */
     public function languageTags()
     {
+        // relation many-to-many: keyboards and language tags
         return $this->belongsToMany(LanguageTag::class, 'keyboard_language_tag');
     }
 }

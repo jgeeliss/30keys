@@ -52,6 +52,9 @@ class User extends Authenticatable
         ];
     }
 
+    /**
+     * Check if user is admin, used in policies
+     */
     public function isAdmin(): bool
     {
         return $this->is_admin;
