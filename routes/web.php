@@ -68,7 +68,7 @@ Route::put('/profile', [UserController::class, 'update'])->name('users.update');
 // Keyboard routes
 Route::get('/keyboards', [KeyboardController::class, 'index'])->name('keyboards.index');
 Route::get('/keyboards/my-layouts', [KeyboardController::class, 'myLayouts'])->name('keyboards.myLayouts');
-Route::get('/keyboard/create', [KeyboardController::class, 'create'])->name('keyboards.create');
+Route::get('/keyboards/create', [KeyboardController::class, 'create'])->name('keyboards.create');
 Route::post('/keyboards', [KeyboardController::class, 'store'])->name('keyboards.store');
 Route::get('/keyboards/{keyboard}', [KeyboardController::class, 'show'])->name('keyboards.show');
 Route::get('/keyboards/{keyboard}/edit', [KeyboardController::class, 'edit'])->name('keyboards.edit');

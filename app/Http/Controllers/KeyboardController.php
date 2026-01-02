@@ -138,7 +138,7 @@ class KeyboardController extends Controller
         }
 
         $languageTags = \App\Models\LanguageTag::orderBy('name')->get();
-        return view('keyboards.create', compact('keyboard', 'languageTags'));
+        return view('keyboards.edit', compact('keyboard', 'languageTags'));
     }
 
     /**
