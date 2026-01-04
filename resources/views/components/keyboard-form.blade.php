@@ -47,9 +47,9 @@
     <div>
         <label>Keyboard Layout</label>
         @if ($errors->has('layout'))
-            <div>
+            <li class="error-message">
                 {{ $errors->first('layout') }}
-            </div>
+            </li>
         @endif
         @php
         $qwertyLayout = [
